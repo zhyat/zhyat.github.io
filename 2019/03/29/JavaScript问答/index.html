@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Q：为什么有的编程规范要求用void 0 代替 undefined?A: undefined 是一个全局变量，可以被修改。为了准备的表达“未定义”，所以使用void 0 Q：underfined 与 null 的区别？A：underfined 是Underfined类型的一个值，是一个名为underfined的变量，表达的意思是“从未赋值”“从未定义”，而null是Nulll类型的一个值，是Jav">
-<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript问答">
-<meta property="og:url" content="http://blog.zhyat.cn/2019/03/29/JavaScript问答/index.html">
+<meta property="og:url" content="https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/index.html">
 <meta property="og:site_name" content="Zhyat Blog">
 <meta property="og:description" content="Q：为什么有的编程规范要求用void 0 代替 undefined?A: undefined 是一个全局变量，可以被修改。为了准备的表达“未定义”，所以使用void 0 Q：underfined 与 null 的区别？A：underfined 是Underfined类型的一个值，是一个名为underfined的变量，表达的意思是“从未赋值”“从未定义”，而null是Nulll类型的一个值，是Jav">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-02T07:16:08.003Z">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-03-28T19:32:44.976Z">
+<meta property="article:modified_time" content="2019-12-31T05:49:59.000Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript问答">
-<meta name="twitter:description" content="Q：为什么有的编程规范要求用void 0 代替 undefined?A: undefined 是一个全局变量，可以被修改。为了准备的表达“未定义”，所以使用void 0 Q：underfined 与 null 的区别？A：underfined 是Underfined类型的一个值，是一个名为underfined的变量，表达的意思是“从未赋值”“从未定义”，而null是Nulll类型的一个值，是Jav">
     
     
         
@@ -39,14 +39,23 @@
     <!-- title -->
     <title>JavaScript问答</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
     
-    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- rss -->
     
     
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Zhyat Blog" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -69,14 +78,14 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/03/29/每日一道大厂题-HTTPS握手/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/03/29/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%81%93%E5%A4%A7%E5%8E%82%E9%A2%98-HTTPS%E6%8F%A1%E6%89%8B/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2019/03/28/复杂度分析/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/03/28/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -86,20 +95,20 @@
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://blog.zhyat.cn/2019/03/29/JavaScript问答/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&text=JavaScript问答"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&is_video=false&description=JavaScript问答"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript问答&body=Check out this article: http://blog.zhyat.cn/2019/03/29/JavaScript问答/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&name=JavaScript问答&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&t=JavaScript问答"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&text=JavaScript问答"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&is_video=false&description=JavaScript问答"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript问答&body=Check out this article: https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&name=JavaScript问答&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&t=JavaScript问答"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -112,7 +121,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -122,7 +131,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Zhyat Blog</span>
       </span>
       
@@ -144,7 +153,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/面试/">面试</a>
+        <a class="tag-link-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
     </div>
 
 
@@ -155,11 +164,14 @@
   <div class="content" itemprop="articleBody">
     <p>Q：为什么有的编程规范要求用void 0 代替 undefined?<br>A: undefined 是一个全局变量，可以被修改。为了准备的表达“未定义”，所以使用void 0</p>
 <p>Q：underfined 与 null 的区别？<br>A：underfined 是Underfined类型的一个值，是一个名为underfined的变量，表达的意思是“从未赋值”“从未定义”，而null是Nulll类型的一个值，是JavaSript语言的关键字，表达的意思是“定义了但是为空”</p>
-<p>Q：0.1+0.2 不能 = 0.3？怎么比较浮点数？<br>A：Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON，浮点数的特性决定了等式两边相差了微小的值，应该比较等式两边之差是否小于最小精度值</p>
+<p>Q：0.1+0.2 不能 &#x3D; 0.3？怎么比较浮点数？<br>A：Math.abs(0.1 + 0.2 - 0.3) &lt;&#x3D; Number.EPSILON，浮点数的特性决定了等式两边相差了微小的值，应该比较等式两边之差是否小于最小精度值</p>
 <p>Q：为什么parseInt推荐传入第二个参数？<br>A：在不传入第二个参数的时候，parseInt默认转换0x开头的16进制，还支持0开头的八进制，所以推荐在任何时候都传入第二个参数。parseFloat则直接把字符串作为十进制解析。多数情况下，Number是比parseInt和parseFloat更好的选择。</p>
 <p>Q：instanceof、typeof 和 Object.prototype.toString的区别？<br>Q：[‘1’,’2’,’3’].map(parseInt)的结果？</p>
-<p>Q: 一个页面如果有一万个Bottom如何绑定事件？<br>A：事件委托，绑定父节点<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.list'</span>).on(<span class="string">'click'</span>, <span class="string">'li'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; <span class="comment">// 绑定事件到父节点</span></span><br><span class="line">    <span class="built_in">console</span>.log($(event.target).html()); <span class="comment">// 注意操作对象是event.target还是this，下面会有详细说明哦</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">'.list'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.target.tagName === <span class="string">'LI'</span>) &#123; <span class="comment">// 判断标签是不是li，注意tagName属性返回的是大写</span></span><br><span class="line">        <span class="built_in">console</span>.log($(event.target).html());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>Q: 我们现在要实现一个红绿灯，把一个圆形 div 绿色 3 秒，黄色 1 秒，红色 2 秒循环改变背景色<br>A:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">duration</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>)</span>&#123;</span><br><span class="line">        setTimeout(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params">duration,color</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"traffic-light"</span>).style.background = color;</span><br><span class="line">    <span class="keyword">await</span> sleep(duration);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">await</span> changeColor(<span class="number">3000</span>,<span class="string">"green"</span>);</span><br><span class="line">        <span class="keyword">await</span> changeColor(<span class="number">1000</span>, <span class="string">"yellow"</span>);</span><br><span class="line">        <span class="keyword">await</span> changeColor(<span class="number">2000</span>, <span class="string">"red"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">main()</span><br></pre></td></tr></table></figure></p>
+<p>Q: 一个页面如果有一万个Bottom如何绑定事件？<br>A：事件委托，绑定父节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;.list&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;li&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123; <span class="comment">// 绑定事件到父节点</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>($(event.<span class="property">target</span>).<span class="title function_">html</span>()); <span class="comment">// 注意操作对象是event.target还是this，下面会有详细说明哦</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;.list&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (event.<span class="property">target</span>.<span class="property">tagName</span> === <span class="string">&#x27;LI&#x27;</span>) &#123; <span class="comment">// 判断标签是不是li，注意tagName属性返回的是大写</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>($(event.<span class="property">target</span>).<span class="title function_">html</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Q: 我们现在要实现一个红绿灯，把一个圆形 div 绿色 3 秒，黄色 1 秒，红色 2 秒循环改变背景色<br>A:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">duration</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve</span>)&#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, duration);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">changeColor</span>(<span class="params">duration,color</span>)&#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;traffic-light&quot;</span>).<span class="property">style</span>.<span class="property">background</span> = color;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">sleep</span>(duration);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">changeColor</span>(<span class="number">3000</span>,<span class="string">&quot;green&quot;</span>);</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">changeColor</span>(<span class="number">1000</span>, <span class="string">&quot;yellow&quot;</span>);</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">changeColor</span>(<span class="number">2000</span>, <span class="string">&quot;red&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">main</span>()</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -190,17 +202,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://blog.zhyat.cn/2019/03/29/JavaScript问答/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&text=JavaScript问答"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&is_video=false&description=JavaScript问答"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript问答&body=Check out this article: http://blog.zhyat.cn/2019/03/29/JavaScript问答/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&title=JavaScript问答"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&name=JavaScript问答&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://blog.zhyat.cn/2019/03/29/JavaScript问答/&t=JavaScript问答"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&text=JavaScript问答"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&is_video=false&description=JavaScript问答"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript问答&body=Check out this article: https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&title=JavaScript问答"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&name=JavaScript问答&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://zhyat.github.io/2019/03/29/JavaScript%E9%97%AE%E7%AD%94/&t=JavaScript问答"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -218,7 +230,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2020 zhyat
+    Copyright &copy; 2023 zhyat
   </div>
   <div class="footer-right">
     <nav>
@@ -239,15 +251,25 @@
 
     </div>
     <!-- styles -->
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
 <link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
+
     <!-- jquery -->
+
 <script src="/lib/jquery/jquery.min.js"></script>
+
+
 <script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 <!-- clipboard -->
 
-  <script src="/lib/clipboard/clipboard.min.js"></script>
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
@@ -268,31 +290,16 @@
   })
   </script>
 
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 </body>
