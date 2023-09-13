@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ThinkPHP 5.0 请求</title>
-    <url>/2017/09/13/ThinkPHP5.0%E8%AF%B7%E6%B1%82/</url>
-    <content><![CDATA[<p>ThinkPHP5.0请求</p>
-<span id="more"></span>
-
-<h4 id="请求对象："><a href="#请求对象：" class="headerlink" title="请求对象："></a>请求对象：</h4><ul>
-<li>Request对象的作用是与客户端交互，收集客户端的form、URL、Cookie等。</li>
-<li>Request对象是从客户端向服务器发出请求，包括用户提交的信息以及客户端的一些信息。客户端可通过HTML表单或在网页地址后面提供参数的方法提交数据，然后通过Request对象的相关方法来获取这些数据。Request的各种方法主要用来处理客户端浏览器提交的请求中的各项参数和选项。</li>
-</ul>
-<h4 id="动态绑定属性："><a href="#动态绑定属性：" class="headerlink" title="动态绑定属性："></a>动态绑定属性：</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Request</span>::<span class="title function_ invoke__">instance</span>()-&gt;<span class="title function_ invoke__">bind</span>(<span class="string">&#x27;user&#x27;</span>,<span class="variable">$user</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="获取URL"><a href="#获取URL" class="headerlink" title="获取URL:"></a>获取URL:</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">request</span>()-&gt;<span class="title function_ invoke__">url</span>(); <span class="comment">//函数助手</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="请求变量信息："><a href="#请求变量信息：" class="headerlink" title="请求变量信息："></a>请求变量信息：</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Request</span>::<span class="title function_ invoke__">instance</span>()-&gt;<span class="title function_ invoke__">param</span>(<span class="string">&#x27;user&#x27;</span>); <span class="comment">//可传参数，否则获取所有参数</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">param</span>(<span class="string">&#x27;user&#x27;</span>,<span class="string">&#x27;Tom&#x27;</span>,<span class="string">&#x27;strtolower&#x27;</span>); <span class="comment">//支持变量的过滤和默认值</span></span><br><span class="line"><span class="title function_ invoke__">input</span>(<span class="string">&#x27;user&#x27;</span>); <span class="comment">//函数助手的写法，作用相同</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="get-post-cookie-file"><a href="#get-post-cookie-file" class="headerlink" title="get post cookie file"></a>get post cookie file</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">get</span>(); <span class="comment">//get</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(); <span class="comment">//post</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">cookie</span>(); <span class="comment">//cookie</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">file</span>(); <span class="comment">//上传文件</span></span><br></pre></td></tr></table></figure>
-<h4 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">method</span>(); <span class="comment">// 请求方法</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">ip</span>(); <span class="comment">// 访问IP</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">isAjax</span>(); <span class="comment">// 是否Ajax请求</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">domain</span>(); <span class="comment">// 当前域名</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">baseFile</span>(); <span class="comment">// 当前入口文件</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">url</span>(ture); <span class="comment">// 包含域名的完整url地址，有true完整的url，没有true不含域名</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">query</span>(); <span class="comment">// url地址的参数信息</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">baseUrl</span>(); <span class="comment">// 当前的url地址，不含QUERY_STRING</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">pathinfo</span>(); <span class="comment">// url地址中的pathinfo信息</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">ext</span>(); <span class="comment">// url地址中的后缀信息</span></span><br></pre></td></tr></table></figure>
-<h4 id="当前模块-控制器-操作信息"><a href="#当前模块-控制器-操作信息" class="headerlink" title="当前模块&#x2F;控制器&#x2F;操作信息"></a>当前模块&#x2F;控制器&#x2F;操作信息</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">module</span>(); <span class="comment">// 当前模块</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">controller</span>(); <span class="comment">// 当前控制器</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">action</span>(); <span class="comment">// 当前操作信息</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>PHP</category>
-        <category>thinkPHP 5.0</category>
-      </categories>
-  </entry>
-  <entry>
     <title>《Three.js入门指南》总结（1~3章）</title>
     <url>/2017/03/04/%E3%80%8AThree.js%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC1-3%E7%AB%A0/</url>
     <content><![CDATA[<blockquote>
@@ -215,9 +190,34 @@
         <category>Three.js</category>
       </categories>
       <tags>
-        <tag>FrontEnd</tag>
         <tag>三维可视化</tag>
+        <tag>FrontEnd</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ThinkPHP 5.0 请求</title>
+    <url>/2017/09/13/ThinkPHP5.0%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<p>ThinkPHP5.0请求</p>
+<span id="more"></span>
+
+<h4 id="请求对象："><a href="#请求对象：" class="headerlink" title="请求对象："></a>请求对象：</h4><ul>
+<li>Request对象的作用是与客户端交互，收集客户端的form、URL、Cookie等。</li>
+<li>Request对象是从客户端向服务器发出请求，包括用户提交的信息以及客户端的一些信息。客户端可通过HTML表单或在网页地址后面提供参数的方法提交数据，然后通过Request对象的相关方法来获取这些数据。Request的各种方法主要用来处理客户端浏览器提交的请求中的各项参数和选项。</li>
+</ul>
+<h4 id="动态绑定属性："><a href="#动态绑定属性：" class="headerlink" title="动态绑定属性："></a>动态绑定属性：</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Request</span>::<span class="title function_ invoke__">instance</span>()-&gt;<span class="title function_ invoke__">bind</span>(<span class="string">&#x27;user&#x27;</span>,<span class="variable">$user</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="获取URL"><a href="#获取URL" class="headerlink" title="获取URL:"></a>获取URL:</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">request</span>()-&gt;<span class="title function_ invoke__">url</span>(); <span class="comment">//函数助手</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="请求变量信息："><a href="#请求变量信息：" class="headerlink" title="请求变量信息："></a>请求变量信息：</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Request</span>::<span class="title function_ invoke__">instance</span>()-&gt;<span class="title function_ invoke__">param</span>(<span class="string">&#x27;user&#x27;</span>); <span class="comment">//可传参数，否则获取所有参数</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">param</span>(<span class="string">&#x27;user&#x27;</span>,<span class="string">&#x27;Tom&#x27;</span>,<span class="string">&#x27;strtolower&#x27;</span>); <span class="comment">//支持变量的过滤和默认值</span></span><br><span class="line"><span class="title function_ invoke__">input</span>(<span class="string">&#x27;user&#x27;</span>); <span class="comment">//函数助手的写法，作用相同</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="get-post-cookie-file"><a href="#get-post-cookie-file" class="headerlink" title="get post cookie file"></a>get post cookie file</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">get</span>(); <span class="comment">//get</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(); <span class="comment">//post</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">cookie</span>(); <span class="comment">//cookie</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">file</span>(); <span class="comment">//上传文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">method</span>(); <span class="comment">// 请求方法</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">ip</span>(); <span class="comment">// 访问IP</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">isAjax</span>(); <span class="comment">// 是否Ajax请求</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">domain</span>(); <span class="comment">// 当前域名</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">baseFile</span>(); <span class="comment">// 当前入口文件</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">url</span>(ture); <span class="comment">// 包含域名的完整url地址，有true完整的url，没有true不含域名</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">query</span>(); <span class="comment">// url地址的参数信息</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">baseUrl</span>(); <span class="comment">// 当前的url地址，不含QUERY_STRING</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">pathinfo</span>(); <span class="comment">// url地址中的pathinfo信息</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">ext</span>(); <span class="comment">// url地址中的后缀信息</span></span><br></pre></td></tr></table></figure>
+<h4 id="当前模块-控制器-操作信息"><a href="#当前模块-控制器-操作信息" class="headerlink" title="当前模块&#x2F;控制器&#x2F;操作信息"></a>当前模块&#x2F;控制器&#x2F;操作信息</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">module</span>(); <span class="comment">// 当前模块</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">controller</span>(); <span class="comment">// 当前控制器</span></span><br><span class="line"><span class="variable">$request</span>-&gt;<span class="title function_ invoke__">action</span>(); <span class="comment">// 当前操作信息</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>thinkPHP 5.0</category>
+      </categories>
   </entry>
   <entry>
     <title>ThinkPHP 5.0 响应</title>
@@ -1579,41 +1579,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Jest测试JavaScript</title>
-    <url>/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/</url>
-    <content><![CDATA[<blockquote>
-<p>Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。</p>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>npm init -y</li>
-<li>npm install -D jest babel-jest babel-core babel-preset-env regenerator-runtime</li>
-</ol>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
-<li>在项目根目录添加<code>.babelrc</code>文件</li>
-<li>在文件中写入  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>打开<code>package.json</code>文件，将<code>script</code>下的<code>test</code>的值修改为<code>jest</code>：  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="编写测试方法"><a href="#编写测试方法" class="headerlink" title="编写测试方法"></a>编写测试方法</h2><ol>
-<li>创建<code>src</code>和<code>test</code>目录及相关文件</li>
-</ol>
-<ul>
-<li>在项目根目录下创建<code>src</code>目录，并在<code>src</code>目录下添加<code>functions.js</code>文件</li>
-<li>在项目根目录下创建<code>test</code>目录，并在<code>test</code>目录下创建<code>functions.test.js</code>文件</li>
-<li>测试文件的文件名 &#x3D; 被测试模块名 + .test.js，例如被测试模块为<code>functions.js</code>，那么对应的测试文件命名为<code>functions.test.js</code>。</li>
-<li><code>Jest</code> 会自动找到项目中所有使用<code>.spec.js</code>或<code>.test.js</code>文件命名的测试文件并执行</li>
-</ul>
-<ol start="2">
-<li>在<code>src/functions.js</code>中创建被测试的模块  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  在<code>test/functions.test.js</code>文件中创建测试用例  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> functions  <span class="keyword">from</span> <span class="string">&#x27;../src/functions&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;sum(2 + 2) 等于 4&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(functions.<span class="title function_">sum</span>(<span class="number">2</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">4</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>测试｜Test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>同步微博到推特或脸书</title>
     <url>/2018/03/09/%E5%90%8C%E6%AD%A5%E5%BE%AE%E5%8D%9A%E5%88%B0%E6%8E%A8%E7%89%B9%E6%88%96%E8%84%B8%E4%B9%A6/</url>
     <content><![CDATA[<p>同步微博到推特或脸书</p>
@@ -1773,27 +1738,39 @@
       </tags>
   </entry>
   <entry>
-    <title>旋转数组的多种解法</title>
-    <url>/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/</url>
-    <content><![CDATA[<p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。</p>
+    <title>使用Jest测试JavaScript</title>
+    <url>/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/</url>
+    <content><![CDATA[<blockquote>
+<p>Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。</p>
+</blockquote>
 <span id="more"></span>
 
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入: [1,2,3,4,5,6,7] 和 k &#x3D; 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右旋转 1 步: [7,1,2,3,4,5,6]<br>向右旋转 2 步: [6,7,1,2,3,4,5]<br>向右旋转 3 步: [5,6,7,1,2,3,4]</p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li>
-<li>要求使用空间复杂度为 O(1) 的原地算法。</li>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>npm init -y</li>
+<li>npm install -D jest babel-jest babel-core babel-preset-env regenerator-runtime</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>在项目根目录添加<code>.babelrc</code>文件</li>
+<li>在文件中写入  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>打开<code>package.json</code>文件，将<code>script</code>下的<code>test</code>的值修改为<code>jest</code>：  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="编写测试方法"><a href="#编写测试方法" class="headerlink" title="编写测试方法"></a>编写测试方法</h2><ol>
+<li>创建<code>src</code>和<code>test</code>目录及相关文件</li>
+</ol>
+<ul>
+<li>在项目根目录下创建<code>src</code>目录，并在<code>src</code>目录下添加<code>functions.js</code>文件</li>
+<li>在项目根目录下创建<code>test</code>目录，并在<code>test</code>目录下创建<code>functions.test.js</code>文件</li>
+<li>测试文件的文件名 &#x3D; 被测试模块名 + .test.js，例如被测试模块为<code>functions.js</code>，那么对应的测试文件命名为<code>functions.test.js</code>。</li>
+<li><code>Jest</code> 会自动找到项目中所有使用<code>.spec.js</code>或<code>.test.js</code>文件命名的测试文件并执行</li>
 </ul>
-<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>执行时间：140 ms 空间复杂度： 时间复杂度：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">k</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">void</span>&#125; Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rotate = <span class="keyword">function</span>(<span class="params">nums, k</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = nums.<span class="title function_">splice</span>( nums.<span class="property">length</span>-k, k )</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">let</span> i = temp.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        nums.<span class="title function_">unshift</span>( temp[i] )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>执行时间</p>
+<ol start="2">
+<li>在<code>src/functions.js</code>中创建被测试的模块  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  在<code>test/functions.test.js</code>文件中创建测试用例  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> functions  <span class="keyword">from</span> <span class="string">&#x27;../src/functions&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;sum(2 + 2) 等于 4&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(functions.<span class="title function_">sum</span>(<span class="number">2</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">4</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <categories>
-        <category>数据结构与算法｜Algorithm</category>
+        <category>测试｜Test</category>
       </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
   </entry>
   <entry>
     <title>Typescript 学习笔记—基本语法</title>
@@ -1829,6 +1806,29 @@
         <category>JavaScript</category>
         <category>TypeScript</category>
       </categories>
+  </entry>
+  <entry>
+    <title>旋转数组的多种解法</title>
+    <url>/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/</url>
+    <content><![CDATA[<p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。</p>
+<span id="more"></span>
+
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入: [1,2,3,4,5,6,7] 和 k &#x3D; 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右旋转 1 步: [7,1,2,3,4,5,6]<br>向右旋转 2 步: [6,7,1,2,3,4,5]<br>向右旋转 3 步: [5,6,7,1,2,3,4]</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li>
+<li>要求使用空间复杂度为 O(1) 的原地算法。</li>
+</ul>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>执行时间：140 ms 空间复杂度： 时间复杂度：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">k</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">void</span>&#125; Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rotate = <span class="keyword">function</span>(<span class="params">nums, k</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = nums.<span class="title function_">splice</span>( nums.<span class="property">length</span>-k, k )</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">let</span> i = temp.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        nums.<span class="title function_">unshift</span>( temp[i] )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>执行时间</p>
+]]></content>
+      <categories>
+        <category>数据结构与算法｜Algorithm</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
   </entry>
   <entry>
     <title>js 必须写分号的几种情况</title>
@@ -1922,40 +1922,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript 中判断 this 指向的一些方法</title>
-    <url>/2019/05/27/JavaScript%E4%B8%AD%E5%88%A4%E6%96%ADthis%E6%8C%87%E5%90%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>JavaScript 中的 this 可能是 JS 这门语言中最难的一个关键字，想要去理解 this 运作的原理对 JS 需要一定的使用经验。本文并不深究 this 为什么指向某个地方，本文是一篇方法论的文章，只说明怎么样判断 this 的指向。</p>
-<h3 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h3><ol>
-<li>this 指向自身 ❌</li>
-<li>this 指向函数的作用域 ❌</li>
-</ol>
-<h3 id="正确的说法"><a href="#正确的说法" class="headerlink" title="正确的说法"></a>正确的说法</h3><blockquote>
-<p>this 实际上是发生在函数调用时候的绑定，它指向什么完全取决于函数在哪里调用</p>
-</blockquote>
-<p>看得明明白白，好像自己真的懂了是不是？呵呵，不可能的。</p>
-<h3 id="绑定的几条规则"><a href="#绑定的几条规则" class="headerlink" title="绑定的几条规则"></a>绑定的几条规则</h3><h4 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h4><p>独立函数调用。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="title function_">f</span>() <span class="comment">// 1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>f()没有加任何的修饰的函数引用，所以此函数不可能使用其他规则，进而 this 此时指向的就是全局对象。不过需要注意的是，在严格模式中，this 是不可以绑定到全局对象上的。</p>
-<p>这条规则就是，别的规则都不生效，那就是这条规则。</p>
-<h4 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h4><p>当调用位置有上下文对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">foo</span>: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o.<span class="title function_">foo</span>() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>但是这条规则有几个需要注意的场景：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">foo</span>: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> fCopy = o.<span class="property">foo</span> <span class="comment">// 别名</span></span><br><span class="line"><span class="title function_">fCopy</span>() <span class="comment">// TypeError: this is undefined</span></span><br></pre></td></tr></table></figure>
-<p>为什么会出现这种情况呢？因为实际上<code>fCopy</code> 是 <code>foo</code> 的引用, 是一个没有修饰符，即没有上下文对象的函数调用。</p>
-<h4 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h4><p>使用 <code>call</code> 和 <code>apply()</code> 方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123; <span class="attr">a</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">f.<span class="title function_">call</span>(o)</span><br></pre></td></tr></table></figure>
-<p>这个很明显了，就是手动的明确的，将f的this指向绑定到o上。</p>
-<h4 id="new-绑定"><a href="#new-绑定" class="headerlink" title="new 绑定"></a>new 绑定</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">F</span> (a) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">a</span> = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="title function_">F</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">f.<span class="property">a</span> <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-<p>js 的 new 实际上不是面向对象如java那种创建一个对象的实例，它是基于原型关系的。</p>
-<p>先创建了一个对象，然后连接到到原型上。关于这一块，可以参考 JavaScript 实现复用那篇文章。</p>
-<h3 id="优先级别"><a href="#优先级别" class="headerlink" title="优先级别"></a>优先级别</h3><p>new &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><img src="/2019/05/27/JavaScript%E4%B8%AD%E5%88%A4%E6%96%ADthis%E6%8C%87%E5%90%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/this_flow.png" class="" title="this指向的流程图">]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
     <title>每日一道大厂题-HTTPS握手</title>
     <url>/2019/03/29/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%81%93%E5%A4%A7%E5%8E%82%E9%A2%98-HTTPS%E6%8F%A1%E6%89%8B/</url>
     <content><![CDATA[<p><strong>来自<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question">Daily-Interview-Question</a></strong></p>
@@ -2003,6 +1969,40 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaScript 中判断 this 指向的一些方法</title>
+    <url>/2019/05/27/JavaScript%E4%B8%AD%E5%88%A4%E6%96%ADthis%E6%8C%87%E5%90%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>JavaScript 中的 this 可能是 JS 这门语言中最难的一个关键字，想要去理解 this 运作的原理对 JS 需要一定的使用经验。本文并不深究 this 为什么指向某个地方，本文是一篇方法论的文章，只说明怎么样判断 this 的指向。</p>
+<h3 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h3><ol>
+<li>this 指向自身 ❌</li>
+<li>this 指向函数的作用域 ❌</li>
+</ol>
+<h3 id="正确的说法"><a href="#正确的说法" class="headerlink" title="正确的说法"></a>正确的说法</h3><blockquote>
+<p>this 实际上是发生在函数调用时候的绑定，它指向什么完全取决于函数在哪里调用</p>
+</blockquote>
+<p>看得明明白白，好像自己真的懂了是不是？呵呵，不可能的。</p>
+<h3 id="绑定的几条规则"><a href="#绑定的几条规则" class="headerlink" title="绑定的几条规则"></a>绑定的几条规则</h3><h4 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h4><p>独立函数调用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="title function_">f</span>() <span class="comment">// 1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>f()没有加任何的修饰的函数引用，所以此函数不可能使用其他规则，进而 this 此时指向的就是全局对象。不过需要注意的是，在严格模式中，this 是不可以绑定到全局对象上的。</p>
+<p>这条规则就是，别的规则都不生效，那就是这条规则。</p>
+<h4 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h4><p>当调用位置有上下文对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">foo</span>: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o.<span class="title function_">foo</span>() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>但是这条规则有几个需要注意的场景：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">foo</span>: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> fCopy = o.<span class="property">foo</span> <span class="comment">// 别名</span></span><br><span class="line"><span class="title function_">fCopy</span>() <span class="comment">// TypeError: this is undefined</span></span><br></pre></td></tr></table></figure>
+<p>为什么会出现这种情况呢？因为实际上<code>fCopy</code> 是 <code>foo</code> 的引用, 是一个没有修饰符，即没有上下文对象的函数调用。</p>
+<h4 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h4><p>使用 <code>call</code> 和 <code>apply()</code> 方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> () &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="variable language_">this</span>.<span class="property">a</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123; <span class="attr">a</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">f.<span class="title function_">call</span>(o)</span><br></pre></td></tr></table></figure>
+<p>这个很明显了，就是手动的明确的，将f的this指向绑定到o上。</p>
+<h4 id="new-绑定"><a href="#new-绑定" class="headerlink" title="new 绑定"></a>new 绑定</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">F</span> (a) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">a</span> = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="title function_">F</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">f.<span class="property">a</span> <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>js 的 new 实际上不是面向对象如java那种创建一个对象的实例，它是基于原型关系的。</p>
+<p>先创建了一个对象，然后连接到到原型上。关于这一块，可以参考 JavaScript 实现复用那篇文章。</p>
+<h3 id="优先级别"><a href="#优先级别" class="headerlink" title="优先级别"></a>优先级别</h3><p>new &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><img src="/2019/05/27/JavaScript%E4%B8%AD%E5%88%A4%E6%96%ADthis%E6%8C%87%E5%90%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/this_flow.png" class="" title="this指向的流程图">]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
     <title>ES6 之 Symbol</title>
     <url>/2019/06/02/ES6-Symbol/</url>
     <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Symbol 的用法其实很简单，就是创建一个独一无二的值。<br>举个例子：</p>
@@ -2029,45 +2029,6 @@
         <category>JavaScript</category>
         <category>ECMAScript 6</category>
       </categories>
-  </entry>
-  <entry>
-    <title>设计稿中字体对应的字重</title>
-    <url>/2019/07/10/%E5%AD%97%E4%BD%93%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AD%97%E9%87%8D/</url>
-    <content><![CDATA[<p>设计师给的标注文件经常会出现一个情况，字重总是通过直接设置具体的字体来指定字重，实际上在font-family那一行Medium指的是字重。</p>
-<img src="/2019/07/10/%E5%AD%97%E4%BD%93%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AD%97%E9%87%8D/exp1.png" class="" title="例子">
-
-<p>其对应关系大致符合：<br>100 - Thin<br>200 - Extra Light (Ultra Light)<br>300 - Light<br>400 - Regular (Normal、Book、Roman)<br>500 - Medium<br>600 - Semi Bold (Demi Bold)<br>700 - Bold<br>800 - Extra Bold (Ultra Bold)<br>900 - Black (Heavy)</p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>常见的改善前端代码的设计模式-单例模式</title>
-    <url>/2019/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p>前端相对于后端，对于设计模式的理解和主动使用是欠缺的，更多的时候是凭借着经验使用到了，却缺乏对此的理解和认知。</p>
-<p>所谓设计模式，就是对一些代码的总结和归纳，使得建立良好的代码有迹可循，知道什么场景怎么去写，这样写有什么样的好处和弊端。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义：保证一个类仅有一个实例,并提供一个访问它的全局访问点。<br>使用场景：全局缓存、Windows对象、登录浮窗等<br>关键：用一个变量来标志是否已经为某个类创建对象，没有则创建，有则返回这个对象</p>
-<h2 id="标准单例模式"><a href="#标准单例模式" class="headerlink" title="标准单例模式"></a>标准单例模式</h2><p>代码实现：<br><em>javascript code</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 标准单例模式</span></span><br><span class="line"><span class="comment"> * 缺点是使用者必须知道这是个单例类，本来可以直接new xxx，现在变成了xxx.getInstance</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Singleton</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">instance</span> = <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Singleton</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Singleton</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getInstance</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">instance</span>!==<span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span> = <span class="keyword">new</span> <span class="title class_">Singleton</span>(name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">instance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="透明单例模式"><a href="#透明单例模式" class="headerlink" title="透明单例模式"></a>透明单例模式</h2><p><em>javascript code</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 利用闭包和IIFE实现了透明单例模式</span></span><br><span class="line"><span class="comment"> * 但违反了单一职责原则</span></span><br><span class="line"><span class="comment"> * 缺点是，当不再需要单例时，需要改写构造函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">CreateDiv</span> = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> instance</span><br><span class="line">  <span class="keyword">var</span> <span class="title class_">CreateDiv</span> = <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (instance) &#123;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">html</span> = html</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">init</span>() <span class="comment">// 执行init方法</span></span><br><span class="line">    <span class="keyword">return</span> (instance = <span class="variable language_">this</span>) <span class="comment">// 保证只有一个一个对象</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title class_">CreateDiv</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">init</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> div = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">    div.<span class="property">innerHTML</span> = <span class="variable language_">this</span>.<span class="property">html</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(div)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">CreateDiv</span></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-
-<h2 id="用代理实现的单例"><a href="#用代理实现的单例" class="headerlink" title="用代理实现的单例"></a>用代理实现的单例</h2><p><em>javascript code</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 代理实现单例</span></span><br><span class="line"><span class="comment"> * 将负责管理单例的逻辑移到proxySingletonCreate</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">CreateSpan</span> = <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">html</span> = html</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">init</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">CreateSpan</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">init</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> span = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>)</span><br><span class="line">  span.<span class="property">innerHTML</span> = <span class="variable language_">this</span>.<span class="property">html</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(span)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> proxySingletonCreate = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> instance</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!instance) [(instance = <span class="keyword">new</span> <span class="title class_">CreateSpan</span>(<span class="string">&#x27;test&#x27;</span>))]</span><br><span class="line">    <span class="keyword">return</span> instance</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="创建单例的通用方法"><a href="#创建单例的通用方法" class="headerlink" title="创建单例的通用方法"></a>创建单例的通用方法</h2><p>由上可以看出，创建单例的核心即为使用一个变量表示这个对象是否被创建，即：<br><em>javascript code</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> instance</span><br><span class="line"><span class="keyword">if</span>(!instance) &#123;</span><br><span class="line">   instance = xxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体代码实现即为：<br><em>javascript code</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建单例的抽象方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; fn </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getSingle = <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> result</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> result || (result = fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)) </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>设计模式｜Design Pattern</category>
-      </categories>
-      <tags>
-        <tag>FrontEnd</tag>
-      </tags>
   </entry>
   <entry>
     <title>微信小程序路由栈不能超过 10 的解决方案</title>
@@ -2111,6 +2072,45 @@
       </tags>
   </entry>
   <entry>
+    <title>设计稿中字体对应的字重</title>
+    <url>/2019/07/10/%E5%AD%97%E4%BD%93%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AD%97%E9%87%8D/</url>
+    <content><![CDATA[<p>设计师给的标注文件经常会出现一个情况，字重总是通过直接设置具体的字体来指定字重，实际上在font-family那一行Medium指的是字重。</p>
+<img src="/2019/07/10/%E5%AD%97%E4%BD%93%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AD%97%E9%87%8D/exp1.png" class="" title="例子">
+
+<p>其对应关系大致符合：<br>100 - Thin<br>200 - Extra Light (Ultra Light)<br>300 - Light<br>400 - Regular (Normal、Book、Roman)<br>500 - Medium<br>600 - Semi Bold (Demi Bold)<br>700 - Bold<br>800 - Extra Bold (Ultra Bold)<br>900 - Black (Heavy)</p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>常见的改善前端代码的设计模式-单例模式</title>
+    <url>/2019/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>前端相对于后端，对于设计模式的理解和主动使用是欠缺的，更多的时候是凭借着经验使用到了，却缺乏对此的理解和认知。</p>
+<p>所谓设计模式，就是对一些代码的总结和归纳，使得建立良好的代码有迹可循，知道什么场景怎么去写，这样写有什么样的好处和弊端。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义：保证一个类仅有一个实例,并提供一个访问它的全局访问点。<br>使用场景：全局缓存、Windows对象、登录浮窗等<br>关键：用一个变量来标志是否已经为某个类创建对象，没有则创建，有则返回这个对象</p>
+<h2 id="标准单例模式"><a href="#标准单例模式" class="headerlink" title="标准单例模式"></a>标准单例模式</h2><p>代码实现：<br><em>javascript code</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 标准单例模式</span></span><br><span class="line"><span class="comment"> * 缺点是使用者必须知道这是个单例类，本来可以直接new xxx，现在变成了xxx.getInstance</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Singleton</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">instance</span> = <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Singleton</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Singleton</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getInstance</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">instance</span>!==<span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">instance</span> = <span class="keyword">new</span> <span class="title class_">Singleton</span>(name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">instance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="透明单例模式"><a href="#透明单例模式" class="headerlink" title="透明单例模式"></a>透明单例模式</h2><p><em>javascript code</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 利用闭包和IIFE实现了透明单例模式</span></span><br><span class="line"><span class="comment"> * 但违反了单一职责原则</span></span><br><span class="line"><span class="comment"> * 缺点是，当不再需要单例时，需要改写构造函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">CreateDiv</span> = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> instance</span><br><span class="line">  <span class="keyword">var</span> <span class="title class_">CreateDiv</span> = <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (instance) &#123;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">html</span> = html</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">init</span>() <span class="comment">// 执行init方法</span></span><br><span class="line">    <span class="keyword">return</span> (instance = <span class="variable language_">this</span>) <span class="comment">// 保证只有一个一个对象</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title class_">CreateDiv</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">init</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> div = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">    div.<span class="property">innerHTML</span> = <span class="variable language_">this</span>.<span class="property">html</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(div)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">CreateDiv</span></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="用代理实现的单例"><a href="#用代理实现的单例" class="headerlink" title="用代理实现的单例"></a>用代理实现的单例</h2><p><em>javascript code</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 代理实现单例</span></span><br><span class="line"><span class="comment"> * 将负责管理单例的逻辑移到proxySingletonCreate</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">CreateSpan</span> = <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">html</span> = html</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">init</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">CreateSpan</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">init</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> span = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;span&#x27;</span>)</span><br><span class="line">  span.<span class="property">innerHTML</span> = <span class="variable language_">this</span>.<span class="property">html</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(span)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> proxySingletonCreate = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> instance</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">html</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!instance) [(instance = <span class="keyword">new</span> <span class="title class_">CreateSpan</span>(<span class="string">&#x27;test&#x27;</span>))]</span><br><span class="line">    <span class="keyword">return</span> instance</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建单例的通用方法"><a href="#创建单例的通用方法" class="headerlink" title="创建单例的通用方法"></a>创建单例的通用方法</h2><p>由上可以看出，创建单例的核心即为使用一个变量表示这个对象是否被创建，即：<br><em>javascript code</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> instance</span><br><span class="line"><span class="keyword">if</span>(!instance) &#123;</span><br><span class="line">   instance = xxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体代码实现即为：<br><em>javascript code</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建单例的抽象方法</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; fn </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> getSingle = <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> result</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> result || (result = fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>)) </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>设计模式｜Design Pattern</category>
+      </categories>
+      <tags>
+        <tag>FrontEnd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见的改善前端代码的设计模式-代理模式</title>
     <url>/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义：为一个对象提供一个代用品或占位符，以便控制对它的访问</p>
@@ -2136,6 +2136,22 @@
       </tags>
   </entry>
   <entry>
+    <title>常见的改善前端代码的设计模式-迭代器模式</title>
+    <url>/2020/02/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义： 迭代器模式是指提供一种方法顺序访问一个聚合对象中的各个元素, 而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来,在使用迭代器模式之后,即使不关心对象的内部构造,也可以按顺序访问其中的每个元素。</p>
+<h2 id="内部迭代器"><a href="#内部迭代器" class="headerlink" title="内部迭代器"></a>内部迭代器</h2><p><em>jscode</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> each = <span class="keyword">function</span>(<span class="params"> ary, callback </span>)&#123;     </span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = ary.<span class="property">length</span>; i &lt; l; i++ )&#123;         </span><br><span class="line">	callback.<span class="title function_">call</span>( ary[i], i, ary[ i ] );  <span class="comment">// 把下标和元素当作参数传给 callback 函数     </span></span><br><span class="line">  &#125; &#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">each</span>( [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ], <span class="keyword">function</span>(<span class="params"> i, n </span>)&#123;     </span><br><span class="line">	alert ( [ i, n ] ); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="外部迭代器"><a href="#外部迭代器" class="headerlink" title="外部迭代器"></a>外部迭代器</h2><p><em>jscode</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Iterator</span> = <span class="keyword">function</span>(<span class="params"> obj </span>)&#123;     </span><br><span class="line">	<span class="keyword">var</span> current = <span class="number">0</span>;      </span><br><span class="line">	<span class="keyword">var</span> next = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		current += <span class="number">1</span>;     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">var</span> isDone = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		<span class="keyword">return</span> current &gt;= obj.<span class="property">length</span>;     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">var</span> getCurrItem = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		<span class="keyword">return</span> obj[ current ];     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">return</span> &#123;         </span><br><span class="line">		<span class="attr">next</span>: next,         </span><br><span class="line">		<span class="attr">isDone</span>: isDone,         </span><br><span class="line">		<span class="attr">getCurrItem</span>: getCurrItem     </span><br><span class="line">	&#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>设计模式｜Design Pattern</category>
+      </categories>
+      <tags>
+        <tag>FrontEnd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见的改善前端代码的设计模式-策略模式</title>
     <url>/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义：定义一系列的算法, 把它们一个个封装起来, 并且使它们可以相互替换。<br>使用场景：达到某个目的，有不同的方法。例如表单校验。<br>关键：环境类（context)接受某一请求，随后把某一请求委托给一策略类，context需要维持对某一策略对象的引用。<br>名词解释：环境类：接受客户请求的类；策略类：实现具体算法的类</p>
@@ -2145,22 +2161,6 @@
 <h2 id="根据js语言特性的代码实现"><a href="#根据js语言特性的代码实现" class="headerlink" title="根据js语言特性的代码实现"></a>根据js语言特性的代码实现</h2><p><em>jscode</em></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> strategy = &#123;</span><br><span class="line">	<span class="string">&quot;muneA&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">100</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;muneB&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">1000</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;muneC&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">500</span></span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">var</span> calculateDelaMoney = <span class="keyword">function</span> (<span class="params">menuType, count</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> strategy[menuType](count)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>设计模式｜Design Pattern</category>
-      </categories>
-      <tags>
-        <tag>FrontEnd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常见的改善前端代码的设计模式-迭代器模式</title>
-    <url>/2020/02/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义： 迭代器模式是指提供一种方法顺序访问一个聚合对象中的各个元素, 而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来,在使用迭代器模式之后,即使不关心对象的内部构造,也可以按顺序访问其中的每个元素。</p>
-<h2 id="内部迭代器"><a href="#内部迭代器" class="headerlink" title="内部迭代器"></a>内部迭代器</h2><p><em>jscode</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> each = <span class="keyword">function</span>(<span class="params"> ary, callback </span>)&#123;     </span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = ary.<span class="property">length</span>; i &lt; l; i++ )&#123;         </span><br><span class="line">	callback.<span class="title function_">call</span>( ary[i], i, ary[ i ] );  <span class="comment">// 把下标和元素当作参数传给 callback 函数     </span></span><br><span class="line">  &#125; &#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">each</span>( [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ], <span class="keyword">function</span>(<span class="params"> i, n </span>)&#123;     </span><br><span class="line">	alert ( [ i, n ] ); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="外部迭代器"><a href="#外部迭代器" class="headerlink" title="外部迭代器"></a>外部迭代器</h2><p><em>jscode</em></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Iterator</span> = <span class="keyword">function</span>(<span class="params"> obj </span>)&#123;     </span><br><span class="line">	<span class="keyword">var</span> current = <span class="number">0</span>;      </span><br><span class="line">	<span class="keyword">var</span> next = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		current += <span class="number">1</span>;     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">var</span> isDone = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		<span class="keyword">return</span> current &gt;= obj.<span class="property">length</span>;     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">var</span> getCurrItem = <span class="keyword">function</span>(<span class="params"></span>)&#123;         </span><br><span class="line">		<span class="keyword">return</span> obj[ current ];     </span><br><span class="line">	&#125;;      </span><br><span class="line">	<span class="keyword">return</span> &#123;         </span><br><span class="line">		<span class="attr">next</span>: next,         </span><br><span class="line">		<span class="attr">isDone</span>: isDone,         </span><br><span class="line">		<span class="attr">getCurrItem</span>: getCurrItem     </span><br><span class="line">	&#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>设计模式｜Design Pattern</category>
       </categories>

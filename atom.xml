@@ -345,27 +345,6 @@
   </entry>
   
   <entry>
-    <title>旋转数组的多种解法</title>
-    <link href="https://zhyat.github.io/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/"/>
-    <id>https://zhyat.github.io/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/</id>
-    <published>2018-09-04T16:00:00.000Z</published>
-    <updated>2020-02-12T06:52:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。</p><span id="more"></span><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入: [1,2,3,4,5,6,7] 和 k &#x3D; 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右旋转 1 步: [7,1,2,3,4,5,6]<br>向右旋转 2 步: [6,7,1,2,3,4,5]<br>向右旋转 3 步: [5,6,7,1,2,3,4]</p><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul><li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li><li>要求使用空间复杂度为 O(1) 的原地算法。</li></ul><h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>执行时间：140 ms 空间复杂度： 时间复杂度：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">k</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">void</span>&#125; Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rotate = <span class="keyword">function</span>(<span class="params">nums, k</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = nums.<span class="title function_">splice</span>( nums.<span class="property">length</span>-k, k )</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">let</span> i = temp.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        nums.<span class="title function_">unshift</span>( temp[i] )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>执行时间</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数据结构与算法｜Algorithm" scheme="https://zhyat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BD%9CAlgorithm/"/>
-    
-    
-    <category term="LeetCode" scheme="https://zhyat.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Typescript 学习笔记—基本语法</title>
     <link href="https://zhyat.github.io/2018/09/05/TypeScript%20%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"/>
     <id>https://zhyat.github.io/2018/09/05/TypeScript%20%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</id>
@@ -387,23 +366,23 @@
   </entry>
   
   <entry>
-    <title>使用Jest测试JavaScript</title>
-    <link href="https://zhyat.github.io/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/"/>
-    <id>https://zhyat.github.io/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/</id>
-    <published>2018-09-03T16:00:00.000Z</published>
-    <updated>2020-02-12T06:26:14.000Z</updated>
+    <title>旋转数组的多种解法</title>
+    <link href="https://zhyat.github.io/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/"/>
+    <id>https://zhyat.github.io/2018/09/05/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E8%A7%A3%E6%B3%95/</id>
+    <published>2018-09-04T16:00:00.000Z</published>
+    <updated>2020-02-12T06:52:32.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。</p></blockquote><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol><li>npm init -y</li><li>npm install -D jest babel-jest babel-core babel-preset-env regenerator-runtime</li></ol><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol><li>在项目根目录添加<code>.babelrc</code>文件</li><li>在文件中写入  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>打开<code>package.json</code>文件，将<code>script</code>下的<code>test</code>的值修改为<code>jest</code>：  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li></ol><h2 id="编写测试方法"><a href="#编写测试方法" class="headerlink" title="编写测试方法"></a>编写测试方法</h2><ol><li>创建<code>src</code>和<code>test</code>目录及相关文件</li></ol><ul><li>在项目根目录下创建<code>src</code>目录，并在<code>src</code>目录下添加<code>functions.js</code>文件</li><li>在项目根目录下创建<code>test</code>目录，并在<code>test</code>目录下创建<code>functions.test.js</code>文件</li><li>测试文件的文件名 &#x3D; 被测试模块名 + .test.js，例如被测试模块为<code>functions.js</code>，那么对应的测试文件命名为<code>functions.test.js</code>。</li><li><code>Jest</code> 会自动找到项目中所有使用<code>.spec.js</code>或<code>.test.js</code>文件命名的测试文件并执行</li></ul><ol start="2"><li>在<code>src/functions.js</code>中创建被测试的模块  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  在<code>test/functions.test.js</code>文件中创建测试用例  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functions  <span class="keyword">from</span> <span class="string">&#x27;../src/functions&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;sum(2 + 2) 等于 4&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(functions.<span class="title function_">sum</span>(<span class="number">2</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">4</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。</p><span id="more"></span><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入: [1,2,3,4,5,6,7] 和 k &#x3D; 3<br>输出: [5,6,7,1,2,3,4]<br>解释:<br>向右旋转 1 步: [7,1,2,3,4,5,6]<br>向右旋转 2 步: [6,7,1,2,3,4,5]<br>向右旋转 3 步: [5,6,7,1,2,3,4]</p><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul><li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li><li>要求使用空间复杂度为 O(1) 的原地算法。</li></ul><h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>执行时间：140 ms 空间复杂度： 时间复杂度：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">k</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">void</span>&#125; Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> rotate = <span class="keyword">function</span>(<span class="params">nums, k</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = nums.<span class="title function_">splice</span>( nums.<span class="property">length</span>-k, k )</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">let</span> i = temp.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        nums.<span class="title function_">unshift</span>( temp[i] )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>执行时间</p>]]></content>
     
     
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
+    <summary type="html">&lt;p&gt;给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。&lt;/p&gt;</summary>
     
     
     
-    <category term="测试｜Test" scheme="https://zhyat.github.io/categories/%E6%B5%8B%E8%AF%95%EF%BD%9CTest/"/>
+    <category term="数据结构与算法｜Algorithm" scheme="https://zhyat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BD%9CAlgorithm/"/>
     
+    
+    <category term="LeetCode" scheme="https://zhyat.github.io/tags/LeetCode/"/>
     
   </entry>
   
@@ -427,6 +406,27 @@
     
     
     <category term="FrontEnd" scheme="https://zhyat.github.io/tags/FrontEnd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Jest测试JavaScript</title>
+    <link href="https://zhyat.github.io/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/"/>
+    <id>https://zhyat.github.io/2018/09/04/%E4%BD%BF%E7%94%A8Jest%E6%B5%8B%E8%AF%95JavaScript/</id>
+    <published>2018-09-03T16:00:00.000Z</published>
+    <updated>2020-02-12T06:26:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。</p></blockquote><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol><li>npm init -y</li><li>npm install -D jest babel-jest babel-core babel-preset-env regenerator-runtime</li></ol><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol><li>在项目根目录添加<code>.babelrc</code>文件</li><li>在文件中写入  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>打开<code>package.json</code>文件，将<code>script</code>下的<code>test</code>的值修改为<code>jest</code>：  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li></ol><h2 id="编写测试方法"><a href="#编写测试方法" class="headerlink" title="编写测试方法"></a>编写测试方法</h2><ol><li>创建<code>src</code>和<code>test</code>目录及相关文件</li></ol><ul><li>在项目根目录下创建<code>src</code>目录，并在<code>src</code>目录下添加<code>functions.js</code>文件</li><li>在项目根目录下创建<code>test</code>目录，并在<code>test</code>目录下创建<code>functions.test.js</code>文件</li><li>测试文件的文件名 &#x3D; 被测试模块名 + .test.js，例如被测试模块为<code>functions.js</code>，那么对应的测试文件命名为<code>functions.test.js</code>。</li><li><code>Jest</code> 会自动找到项目中所有使用<code>.spec.js</code>或<code>.test.js</code>文件命名的测试文件并执行</li></ul><ol start="2"><li>在<code>src/functions.js</code>中创建被测试的模块  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  在<code>test/functions.test.js</code>文件中创建测试用例  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functions  <span class="keyword">from</span> <span class="string">&#x27;../src/functions&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;sum(2 + 2) 等于 4&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(functions.<span class="title function_">sum</span>(<span class="number">2</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">4</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Jest 是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、JSDom、覆盖率报告等开发者所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="测试｜Test" scheme="https://zhyat.github.io/categories/%E6%B5%8B%E8%AF%95%EF%BD%9CTest/"/>
+    
     
   </entry>
   
