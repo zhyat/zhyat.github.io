@@ -90,9 +90,6 @@ deploy:
   - type: git
     repo: https://github.com/zhyat/zhyat.github.io.git
     branch: master
-  - type: git
-    repo: https://git.coding.net/zhyat/zhyat.coding.me.git
-    branch: master
   
 
 # Local Search

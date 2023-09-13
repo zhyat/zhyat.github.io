@@ -3,8 +3,7 @@ hexo g -d
 cd ./.deploy_git
 git add . -f
 git commit -m "update"
-git push codeing
-git push github
+git push origin master
 cd ../
 git add . -f
 git commit -m 'update'
