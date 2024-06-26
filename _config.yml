@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: "Zhyat Blog"
-subtitle: ''
-description: ''
-keywords:
+title: "zhyat blog"
+subtitle: '一个普通程序员踩过的坑'
+description: '一个普通程序员的记录'
+keywords: code
 author: zhyat
 language: en
 timezone: ''
@@ -31,7 +31,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -104,6 +104,8 @@ theme_config:
     articles: /archives/
     tag: /tags/
     category: /categories/
+  posts_overview:
+    show_all_posts: true
   social_links:
     -
       icon: github
@@ -118,4 +120,4 @@ theme_config:
 deploy:
   - type: git
     repo: https://github.com/zhyat/zhyat.github.io.git
-    branch: master
+    branch: gh-pages

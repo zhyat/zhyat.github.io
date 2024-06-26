@@ -3,7 +3,7 @@ name: Deploy # 部署
 on: # 触发条件
   push:
     branches:
-      - source 
+      - master 
  
   release:
     types:
@@ -14,7 +14,9 @@ on: # 触发条件
 env:
   GIT_USER: zhyat
   GIT_EMAIL: zhyat@outlook.com
-  DEPLOY_BRANCH: master
+  DEPLOY_BRANCH: gh-pages
+  REPO_USER: zhyat
+  REPO_ADDR: github.com/zhyat/zhyat.github.io.git
  
 jobs:
   build:
@@ -24,7 +26,13 @@ jobs:
     - name: Checkout # Checkout 仓库
       uses: actions/checkout@v4
       with:
-        ref: source
+        submodules: recursive
+        ref: master
+
+        
+    - name: Git Submodule Update # Update references
+      run: |
+        git submodule update --remote --recursive
  
     - name: Setup Node # 安装 Node.js
       uses: actions/setup-node@v4
@@ -60,6 +68,6 @@ jobs:
         git init
         git add -A
         git commit -m "generate by hexo"
-        remote_addr=https://zhyat:${{ secrets.GITHUB_TOKEN }}@github.com/zhyat/zhyat.github.io.git
+        remote_addr=https://$REPO_USER:${{ secrets.GITHUB_TOKEN }}@$REPO_ADDR
         git remote add origin ${remote_addr}
-        git push origin master -f
+        git push origin master:$DEPLOY_BRANCH -f
