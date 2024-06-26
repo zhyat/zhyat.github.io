@@ -5,8 +5,8 @@ categories:
   - 工具｜Tools
 ---
 
-许久没有写过博客了，这个hexo项目也闲置多年，以前写的构建脚本已经无法使用，换成 github action 得到了更好的体验。
-思路是在github action 执行一个workflow，构建之后推送到个人仓库的相对应的分支。
+许久没有写过博客了，这个 hexo 项目也闲置多年，以前写的构建脚本已经无法使用，换成 github action 得到了更好的体验。
+思路是在 github action 执行一个 workflow，构建之后推送到个人仓库的相对应的分支。
 
 
 
@@ -23,7 +23,7 @@ workflow 的步骤是：
 5. 构建
 6. 进入构建产物文件夹，推送到指定仓库的指定分支。
 
-在hexo项目根目录下创建 .github/workflows/deploy.yml，写入以下文件
+在 hexo 项目根目录下创建 .github/workflows/deploy.yml，写入以下文件
 
 ```yml
 name: Deploy # 部署
@@ -106,13 +106,13 @@ REPO_ADDR 仓库地址，如 github.com/zhyat/zhyat.github.io.git
 1. 点击头像 -> settings -> Developer Settings -> Personal access tokens - Personal access tokens (classic)
 2. 点击 Generate new token (classic) ，设置为永不过期（按需设置）
 3. 权限选择 repo 及 repo 下的全部
-4. 记录改token值，比如A123...
+4. 记录改 token 值，比如 A123...
 5. 点击个人博客项目 -> settings -> secrets and variables -> actions
 6. 在 Environment secrets 中点击 Manage environment secret，命名后点 Configure environment
 7. 然后在 Environment secrets 中点击 Add environment secret
-8. name 填入 GITHUB_TOKEN, value 填入步骤4记录的token值，如 A123...
+8. name 填入 GITHUB_TOKEN, value 填入步骤 4 记录的 token 值，如 A123...
 
-做完这一步将 hexo 项目push一下即可看到效果。
+做完这一步将 hexo 项目 push 一下即可看到效果。
 
 
 
