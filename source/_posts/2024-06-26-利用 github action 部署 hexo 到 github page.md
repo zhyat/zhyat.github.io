@@ -1,7 +1,7 @@
 ---
 title: 利用 github action 部署 hexo 到 github page
 date: 2024-06-26
-tags:
+categories:
   - 工具｜Tools
 ---
 
