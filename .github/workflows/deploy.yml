@@ -28,11 +28,6 @@ jobs:
       with:
         submodules: recursive
         ref: master
-
-        
-    - name: Git Submodule Update # Update references
-      run: |
-        git submodule update --remote --recursive
  
     - name: Setup Node # 安装 Node.js
       uses: actions/setup-node@v4
