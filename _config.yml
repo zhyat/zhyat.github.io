@@ -4,8 +4,8 @@
 
 # Site
 title: "zhyat blog"
-subtitle: '一个普通程序员踩过的坑'
-description: '一个普通程序员的记录'
+subtitle: ' 一个普通程序员踩过的坑'
+description: ' 一个普通程序员的记录'
 keywords: code
 author: zhyat
 language: en
@@ -113,6 +113,9 @@ theme_config:
     -
       icon: mail
       link: mailto:zhyat@outlook.com
+  google_analytics:
+    enabled: true
+    id: G-7YBPEQHTVB
 
 
 # Deployment
