@@ -117,6 +117,10 @@ theme_config:
     enabled: true
     id: G-7YBPEQHTVB
 
+# hexo-generator-sitemap
+sitemap:
+	path: sitemap.xml
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
