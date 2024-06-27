@@ -117,9 +117,37 @@ theme_config:
     enabled: true
     id: G-7YBPEQHTVB
 
-# hexo-generator-sitemap
-sitemap:
-	path: sitemap.xml
+seo:
+  html:
+    enable: true
+    # fix invalid html
+    fix: true
+    # exclude from minify
+    exclude:
+      - '*.min.{htm,html}'
+  # minify css
+  css:
+    enable: true
+    # If you want to customize the css minifier settings, you can put below
+    # exclude css from minifying, multiple supported
+    exclude:
+      - '**/*.min.css'
+  # minify js
+  js:
+    enable: true
+    # If you want to customize the js minifier settings, you can put below
+    # exclude css from minifying, multiple supported
+    exclude:
+      - '**/*.min.js'
+    # this is terser options, you can customize minifier with terser options https://github.com/terser/terser
+    # below is config example
+    options:
+      compress:
+        dead_code: true
+      mangle:
+        toplevel: true
+        safari10: true
+  sitemap: true
 
 
 # Deployment
