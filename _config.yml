@@ -104,6 +104,7 @@ theme_config:
     articles: /archives/
     tag: /tags/
     category: /categories/
+    LINK_NAME: URL
   posts_overview:
     show_all_posts: true
   social_links:
