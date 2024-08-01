@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="科学计算可视化的分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 科学计算可视化--三维可视化基础">
+<meta property="og:url" content="https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="科学计算可视化的分类">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-11T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.497Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="三维可视化">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>Python 科学计算可视化--三维可视化基础</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/12/19/Tvtk%E7%AE%A1%E7%BA%BF%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&text=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&is_video=false&description=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python 科学计算可视化--三维可视化基础&body=Check out this article: https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&name=Python 科学计算可视化--三维可视化基础&description=&lt;h2 id=&#34;科学计算可视化的分类&#34;&gt;&lt;a href=&#34;#科学计算可视化的分类&#34; class=&#34;headerlink&#34; title=&#34;科学计算可视化的分类&#34;&gt;&lt;/a&gt;科学计算可视化的分类&lt;/h2&gt;" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&t=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">科学计算可视化的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">信息可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">科学可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">科学可视化的可视化方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%A0%87%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">二维标量数据场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%A0%87%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">三维标量数据场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.3.</span> <span class="toc-text">矢量数据场</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TVTK%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">TVTK库的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AATVTK%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">创建一个TVTK的基本三维对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CubeSoure%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">CubeSoure对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CubeSoure%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">CubeSoure对象的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tvtk%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.3.</span> <span class="toc-text">Tvtk库的基本三维对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tvtk%E5%BA%93%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">tvtk库显示一个三维对象</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Python 科学计算可视化--三维可视化基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-12-11T00:00:00.000Z" class="dt-published" itemprop="datePublished">2017-12-11</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Python/">Python</a> › <a class="category-link" href="/categories/Python/Tvtk/">Tvtk</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">三维可视化</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="科学计算可视化的分类"><a href="#科学计算可视化的分类" class="headerlink" title="科学计算可视化的分类"></a>科学计算可视化的分类</h2><span id="more"></span>
+
+<h3 id="信息可视化"><a href="#信息可视化" class="headerlink" title="信息可视化"></a>信息可视化</h3><ul>
+<li>信息</li>
+<li>知识</li>
+</ul>
+<h3 id="科学可视化"><a href="#科学可视化" class="headerlink" title="科学可视化"></a>科学可视化</h3><ul>
+<li>空间数据</li>
+</ul>
+<h2 id="科学可视化的可视化方法"><a href="#科学可视化的可视化方法" class="headerlink" title="科学可视化的可视化方法"></a>科学可视化的可视化方法</h2><h3 id="二维标量数据场"><a href="#二维标量数据场" class="headerlink" title="二维标量数据场"></a>二维标量数据场</h3><ul>
+<li>颜色映射法</li>
+<li>等值线方法</li>
+<li>立体图法和层次分割法</li>
+</ul>
+<h3 id="三维标量数据场"><a href="#三维标量数据场" class="headerlink" title="三维标量数据场"></a>三维标量数据场</h3><ul>
+<li>面绘制法</li>
+<li>体绘制法</li>
+</ul>
+<h3 id="矢量数据场"><a href="#矢量数据场" class="headerlink" title="矢量数据场"></a>矢量数据场</h3><ul>
+<li>直接法</li>
+<li>流线法</li>
+</ul>
+<h2 id="TVTK库的安装"><a href="#TVTK库的安装" class="headerlink" title="TVTK库的安装"></a>TVTK库的安装</h2><p>三维可视化工具<br>Windows10 64位 + Python3.6，在库文件所在目录里依次安装：</p>
+<ul>
+<li>VTK-7.1.1-cp36-cp36m-win_amd64.whl</li>
+<li>numpy-1.12.1+mkl-cp36-cp36m-win_amd64.whl</li>
+<li>traits-4.6.0-cp36-cp36m-win_amd64.whl</li>
+<li>mayavi-4.5.0+vtk71-cp36-cp36m-win_amd64.whl</li>
+<li>PyQt4-4.11.4-cp36-cp36m-win_amd64.whl</li>
+</ul>
+<p>在.whl文件目录下用管理员身份运行cmd,在cmd中输入<code>pip install xxx.whl</code></p>
+<h2 id="创建一个TVTK的基本三维对象"><a href="#创建一个TVTK的基本三维对象" class="headerlink" title="创建一个TVTK的基本三维对象"></a>创建一个TVTK的基本三维对象</h2><p><code>s = tvtk.CubeSource(traits)</code></p>
+<h3 id="CubeSoure对象的属性"><a href="#CubeSoure对象的属性" class="headerlink" title="CubeSoure对象的属性"></a>CubeSoure对象的属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s.x_length</td>
+<td>长方体对象在x轴方向的长度</td>
+</tr>
+<tr>
+<td>s.y_length</td>
+<td>长方体对象在y轴方向的长度</td>
+</tr>
+<tr>
+<td>s.z_length</td>
+<td>长方体对象在z轴方向的长度</td>
+</tr>
+<tr>
+<td>s.center</td>
+<td>长方体对象所在坐标系的原点</td>
+</tr>
+<tr>
+<td>s.output_points_precision</td>
+<td>长方体对象的精度</td>
+</tr>
+</tbody></table>
+<h3 id="CubeSoure对象的常用方法"><a href="#CubeSoure对象的常用方法" class="headerlink" title="CubeSoure对象的常用方法"></a>CubeSoure对象的常用方法</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>set&#x2F;get_x_length()</td>
+<td>设置&#x2F;获取长方体对象在x轴方向的长度</td>
+</tr>
+<tr>
+<td>set&#x2F;get_y_length()</td>
+<td>设置&#x2F;获取长方体对象在y轴方向的长度</td>
+</tr>
+<tr>
+<td>set&#x2F;get_z_length()</td>
+<td>设置&#x2F;获取长方体对象在z轴方向的长度</td>
+</tr>
+<tr>
+<td>set&#x2F;get_center()</td>
+<td>设置&#x2F;获取长方体对象所在坐标系的原点</td>
+</tr>
+<tr>
+<td>set&#x2F;get_bounds()</td>
+<td>设置&#x2F;获取长方体对象的包围盒</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<h3 id="Tvtk库的基本三维对象"><a href="#Tvtk库的基本三维对象" class="headerlink" title="Tvtk库的基本三维对象"></a>Tvtk库的基本三维对象</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CubeSource</td>
+<td>立方体三维对象数据源</td>
+</tr>
+<tr>
+<td>ConeSource</td>
+<td>圆锥三维对象数据源</td>
+</tr>
+<tr>
+<td>CylinderSource</td>
+<td>圆柱三维对象数据源</td>
+</tr>
+<tr>
+<td>ArcSource</td>
+<td>圆弧三维对象数据源</td>
+</tr>
+<tr>
+<td>ArrowSource</td>
+<td>箭头三维对象数据源</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>示例</p>
+<p><code>s = tvtk.ConeSource(height=3.0,radius=1.0,resolution=36)</code></p>
+<h2 id="tvtk库显示一个三维对象"><a href="#tvtk库显示一个三维对象" class="headerlink" title="tvtk库显示一个三维对象"></a>tvtk库显示一个三维对象</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入tvtk库</span></span><br><span class="line"><span class="keyword">from</span> tvtk.api <span class="keyword">import</span> tvtk</span><br><span class="line"><span class="comment"># 创建一个长方体数据源，并且同时设置其长宽高</span></span><br><span class="line">s = tvtk.CubeSource(x_length = <span class="number">1.0</span>,y_length = <span class="number">2.0</span>,z_length = <span class="number">3.0</span>)</span><br><span class="line"><span class="comment"># 转换为图形数据</span></span><br><span class="line">m = tvtk.PolyDataMapper(input_connection = s.output_port)</span><br><span class="line"><span class="comment"># 创建实体</span></span><br><span class="line">a = tvtk.Actor(mapper = m)</span><br><span class="line"><span class="comment"># 创建渲染器，将Actor添加进去</span></span><br><span class="line">r = tvtk.Renderer(background=(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">r.add_actor(a)</span><br><span class="line"><span class="comment"># 创建一个窗口，将渲染器添加进去</span></span><br><span class="line">w = tvtk.RenderWindow(size=(<span class="number">300</span>,<span class="number">300</span>))</span><br><span class="line">w.add_renderer(r)</span><br><span class="line"><span class="comment"># 创建一个窗口的交互工具</span></span><br><span class="line">i = tvtk.RenderWindowInteractor(render_window=w)</span><br><span class="line">i.initialize()</span><br><span class="line">i.start()</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">科学计算可视化的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">信息可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">科学可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">科学可视化的可视化方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%A0%87%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">二维标量数据场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E6%A0%87%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">三维标量数据场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A2%E9%87%8F%E6%95%B0%E6%8D%AE%E5%9C%BA"><span class="toc-number">2.3.</span> <span class="toc-text">矢量数据场</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TVTK%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">TVTK库的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AATVTK%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">创建一个TVTK的基本三维对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CubeSoure%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">CubeSoure对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CubeSoure%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">CubeSoure对象的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tvtk%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.3.</span> <span class="toc-text">Tvtk库的基本三维对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tvtk%E5%BA%93%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E7%BB%B4%E5%AF%B9%E8%B1%A1"><span class="toc-number">5.</span> <span class="toc-text">tvtk库显示一个三维对象</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&text=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&is_video=false&description=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python 科学计算可视化--三维可视化基础&body=Check out this article: https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&title=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&name=Python 科学计算可视化--三维可视化基础&description=&lt;h2 id=&#34;科学计算可视化的分类&#34;&gt;&lt;a href=&#34;#科学计算可视化的分类&#34; class=&#34;headerlink&#34; title=&#34;科学计算可视化的分类&#34;&gt;&lt;/a&gt;科学计算可视化的分类&lt;/h2&gt;" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/&t=Python 科学计算可视化--三维可视化基础" hexo-seo="true" alt="Python 科学计算可视化--三维可视化基础" title="Python 科学计算可视化--三维可视化基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

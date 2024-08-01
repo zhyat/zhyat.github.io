@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="许久没有写过博客了，这个 hexo 项目也闲置多年，以前写的构建脚本已经无法使用，换成 github action 得到了更好的体验。思路是在 github action 执行一个 workflow，构建之后推送到个人仓库的相对应的分支。 具体实现如下：前提我是将 hexo 和 hexo 的构建产物放到了同一个仓库，hexo 源文件放在 master 分支，hexo 构建产物放在 gh-pages">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 github action 部署 hexo 到 github page">
+<meta property="og:url" content="https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="许久没有写过博客了，这个 hexo 项目也闲置多年，以前写的构建脚本已经无法使用，换成 github action 得到了更好的体验。思路是在 github action 执行一个 workflow，构建之后推送到个人仓库的相对应的分支。 具体实现如下：前提我是将 hexo 和 hexo 的构建产物放到了同一个仓库，hexo 源文件放在 master 分支，hexo 构建产物放在 gh-pages">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.513Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>利用 github action 部署 hexo 到 github page</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/08/01/%E5%BA%B8%E4%BA%BA%E5%B8%B8%E8%87%AA%E6%89%B0/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&text=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&is_video=false&description=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用 github action 部署 hexo 到 github page&body=Check out this article: https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&name=利用 github action 部署 hexo 到 github page&description=" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&t=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">具体实现如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-number">1.1.</span> <span class="toc-text">前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99-workflow"><span class="toc-number">1.2.</span> <span class="toc-text">写 workflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-workflow-%E4%B8%AD-env-%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">修改 workflow 中 env 的变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Personal-access-tokens%EF%BC%8C%E5%B9%B6%E5%A1%AB%E5%85%A5%E9%A1%B9%E7%9B%AE%E7%9A%84-Actions-secrets-and-variables"><span class="toc-number">1.4.</span> <span class="toc-text">创建 Personal access tokens，并填入项目的 Actions secrets and variables</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        利用 github action 部署 hexo 到 github page
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-06-26T00:00:00.000Z" class="dt-published" itemprop="datePublished">2024-06-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%B7%A5%E5%85%B7%EF%BD%9CTools/">工具｜Tools</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>许久没有写过博客了，这个 hexo 项目也闲置多年，以前写的构建脚本已经无法使用，换成 github action 得到了更好的体验。<br>思路是在 github action 执行一个 workflow，构建之后推送到个人仓库的相对应的分支。</p>
+<h2 id="具体实现如下："><a href="#具体实现如下：" class="headerlink" title="具体实现如下："></a>具体实现如下：</h2><h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>我是将 hexo 和 hexo 的构建产物放到了同一个仓库，hexo 源文件放在 master 分支，hexo 构建产物放在 gh-pages 分支。</p>
+<h3 id="写-workflow"><a href="#写-workflow" class="headerlink" title="写 workflow"></a>写 workflow</h3><p>workflow 的步骤是：</p>
+<ol>
+<li>切换到指定分支</li>
+<li>安装 Nodejs</li>
+<li>安装依赖</li>
+<li>缓存 node_modules</li>
+<li>构建</li>
+<li>进入构建产物文件夹，推送到指定仓库的指定分支。</li>
+</ol>
+<p>在 hexo 项目根目录下创建 .github&#x2F;workflows&#x2F;deploy.yml，写入以下文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="comment"># 部署</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">on:</span> <span class="comment"># 触发条件</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span> </span><br><span class="line"> </span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">types:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">published</span> <span class="comment"># 推送新版本号</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">env:</span></span><br><span class="line">  <span class="attr">GIT_USER:</span> <span class="string">zhyat</span></span><br><span class="line">  <span class="attr">GIT_EMAIL:</span> <span class="string">zhyat@outlook.com</span></span><br><span class="line">  <span class="attr">DEPLOY_BRANCH:</span> <span class="string">gh-pages</span></span><br><span class="line">  <span class="attr">REPO_USER:</span> <span class="string">zhyat</span></span><br><span class="line">  <span class="attr">REPO_ADDR:</span> <span class="string">github.com/zhyat/zhyat.github.io.git</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"> </span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="comment"># Checkout 仓库</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">submodules:</span> <span class="string">recursive</span></span><br><span class="line">        <span class="attr">ref:</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node</span> <span class="comment"># 安装 Node.js</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&quot;18.x&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Hexo</span> <span class="comment"># 安装 Hexo</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        npm install hexo-cli -g</span></span><br><span class="line"><span class="string"></span>        </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">Modules</span> <span class="comment"># 缓存 Node 插件</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/cache@v4</span></span><br><span class="line">      <span class="attr">id:</span> <span class="string">cache-modules</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">        <span class="attr">key:</span> <span class="string">$&#123;&#123;runner.OS&#125;&#125;-$&#123;&#123;hashFiles(&#x27;**/package-lock.json&#x27;)&#125;&#125;</span></span><br><span class="line"> </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span> <span class="comment"># 如果没有缓存或 插件有更新，则安装插件</span></span><br><span class="line">      <span class="attr">if:</span> <span class="string">steps.cache-modules.outputs.cache-hit</span> <span class="type">!=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span> <span class="comment"># 如果仓库里没有 package-lock.json，上传一下，npm ci 必须要有 package-lock.json</span></span><br><span class="line">        <span class="string">npm</span> <span class="string">ci</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="comment"># 生成</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        hexo clean</span></span><br><span class="line"><span class="string">        hexo generate</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="comment"># 部署</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        git config --global user.name $GIT_USER</span></span><br><span class="line"><span class="string">        git config --global user.email $GIT_EMAIL</span></span><br><span class="line"><span class="string">        export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"><span class="string">        cd public/</span></span><br><span class="line"><span class="string">        git init</span></span><br><span class="line"><span class="string">        git add -A</span></span><br><span class="line"><span class="string">        git commit -m &quot;generate by hexo&quot;</span></span><br><span class="line"><span class="string">        remote_addr=https://$REPO_USER:$&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;@$REPO_ADDR</span></span><br><span class="line"><span class="string">        git remote add origin $&#123;remote_addr&#125;</span></span><br><span class="line"><span class="string">        git push origin $DEPLOY_BRANCH:master -f</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-workflow-中-env-的变量"><a href="#修改-workflow-中-env-的变量" class="headerlink" title="修改 workflow 中 env 的变量"></a>修改 workflow 中 env 的变量</h3><p>GIT_USER 提交的用户<br>GIT_EMAIL 为提交的邮箱<br>DEPLOY_BRANCH 部署的分支，需要和项目中的 setting-&gt;pages-&gt;branch 一致<br>REPO_USER 仓库用户名<br>REPO_ADDR 仓库地址，如 github.com&#x2F;zhyat&#x2F;zhyat.github.io.git</p>
+<h3 id="创建-Personal-access-tokens，并填入项目的-Actions-secrets-and-variables"><a href="#创建-Personal-access-tokens，并填入项目的-Actions-secrets-and-variables" class="headerlink" title="创建 Personal access tokens，并填入项目的 Actions secrets and variables"></a>创建 Personal access tokens，并填入项目的 Actions secrets and variables</h3><ol>
+<li>点击头像 -&gt; settings -&gt; Developer Settings -&gt; Personal access tokens - Personal access tokens (classic)</li>
+<li>点击 Generate new token (classic) ，设置为永不过期（按需设置）</li>
+<li>权限选择 repo 及 repo 下的全部</li>
+<li>记录改 token 值，比如 A123…</li>
+<li>点击个人博客项目 -&gt; settings -&gt; secrets and variables -&gt; actions</li>
+<li>在 Environment secrets 中点击 Manage environment secret，命名后点 Configure environment</li>
+<li>然后在 Environment secrets 中点击 Add environment secret</li>
+<li>name 填入 GITHUB_TOKEN, value 填入步骤 4 记录的 token 值，如 A123…</li>
+</ol>
+<p>做完这一步将 hexo 项目 push 一下即可看到效果。</p>
+<blockquote>
+<p>[!IMPORTANT]<br>非常需要注意 REPO_ADDR 格式，测试了很多次，只有这个格式是可行的，即复制你 clone 项目使用的 https 协议的地址，但是要去掉 <code>https://</code> 。</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">具体实现如下：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-number">1.1.</span> <span class="toc-text">前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99-workflow"><span class="toc-number">1.2.</span> <span class="toc-text">写 workflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-workflow-%E4%B8%AD-env-%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">修改 workflow 中 env 的变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-Personal-access-tokens%EF%BC%8C%E5%B9%B6%E5%A1%AB%E5%85%A5%E9%A1%B9%E7%9B%AE%E7%9A%84-Actions-secrets-and-variables"><span class="toc-number">1.4.</span> <span class="toc-text">创建 Personal access tokens，并填入项目的 Actions secrets and variables</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&text=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&is_video=false&description=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=利用 github action 部署 hexo 到 github page&body=Check out this article: https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&title=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&name=利用 github action 部署 hexo 到 github page&description=" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/&t=利用 github action 部署 hexo 到 github page" hexo-seo="true" alt="利用 github action 部署 hexo 到 github page" title="利用 github action 部署 hexo 到 github page"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

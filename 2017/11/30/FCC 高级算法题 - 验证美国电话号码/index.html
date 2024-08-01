@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="题目描述 虽然这个题目是高级算法题，实际上是正则表达式的内容，先把正则表达式写出来。观察例子可以得出几个结论：  电话号码为十位数字（不包括国家码，连接符） 国家码可以有也可以没有，有的时候只能为1 没有国家码时，如果电话号码没有连着写，则以334的形式分隔（如果有国家码，则以1334分组） 不包括国家码的第一组数字，可以用括号包围。 分隔符为空格或连接符，两者不能接连出现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）">
+<meta property="og:url" content="https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="题目描述 虽然这个题目是高级算法题，实际上是正则表达式的内容，先把正则表达式写出来。观察例子可以得出几个结论：  电话号码为十位数字（不包括国家码，连接符） 国家码可以有也可以没有，有的时候只能为1 没有国家码时，如果电话号码没有连着写，则以334的形式分隔（如果有国家码，则以1334分组） 不包括国家码的第一组数字，可以用括号包围。 分隔符为空格或连接符，两者不能接连出现">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.497Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="FreeCodeCamp">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/12/11/Python%E4%B8%89%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/11/28/ECMAScript%206%20%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&text=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&is_video=false&description=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）&body=Check out this article: https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&name=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）&description=&lt;p&gt;&lt;a href=&#34;https://freecodecamp.cn/challenges/validate-us-telephone-numbers&#34;&gt;题目描述&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;虽然这个题目是高级算法题，实际上是正则表达式的内容，先把正则表达式写出来。观察例子可以得出几个结论：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电话号码为十位数字（不包括国家码，连接符）&lt;/li&gt;
+&lt;li&gt;国家码可以有也可以没有，有的时候只能为1&lt;/li&gt;
+&lt;li&gt;没有国家码时，如果电话号码没有连着写，则以334的形式分隔（如果有国家码，则以1334分组）&lt;/li&gt;
+&lt;li&gt;不包括国家码的第一组数字，可以用括号包围。&lt;/li&gt;
+&lt;li&gt;分隔符为空格或连接符，两者不能接连出现&lt;/li&gt;
+&lt;/ul&gt;" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&t=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-11-30T00:00:00.000Z" class="dt-published" itemprop="datePublished">2017-11-30</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BD%9CAlgorithm/">数据结构与算法｜Algorithm</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/FreeCodeCamp/" rel="tag">FreeCodeCamp</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://freecodecamp.cn/challenges/validate-us-telephone-numbers" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）">题目描述</a></p>
+<p>虽然这个题目是高级算法题，实际上是正则表达式的内容，先把正则表达式写出来。观察例子可以得出几个结论：</p>
+<ul>
+<li>电话号码为十位数字（不包括国家码，连接符）</li>
+<li>国家码可以有也可以没有，有的时候只能为1</li>
+<li>没有国家码时，如果电话号码没有连着写，则以334的形式分隔（如果有国家码，则以1334分组）</li>
+<li>不包括国家码的第一组数字，可以用括号包围。</li>
+<li>分隔符为空格或连接符，两者不能接连出现</li>
+</ul>
+ <span id="more"></span>
+
+<p>那么来逐一实现</p>
+<p>第一步，实现十位数字连接出现和以334的形式出现</p>
+<p>​	<code>\d&#123;3&#125;\d&#123;3&#125;\d&#123;4&#125;</code></p>
+<p>第二步，实现国家码以1出现和不出现</p>
+<p>​	<code>1?\d&#123;3&#125;\d&#123;3&#125;\d&#123;4&#125;</code></p>
+<p>第三步，实现国家码之后可以有空格也可以无空格</p>
+<p>​	<code> 1? ?\d&#123;3&#125;\d&#123;3&#125;\d&#123;4&#125;</code></p>
+<p><em>注意不要用 <code>/s</code>来匹配空格，因为<code>/s</code>匹配的是一个空白符，包括空格、制表符、换页符、换行符和其他 Unicode 空格</em></p>
+<p>第四步，实现电话号码之间可以不分隔也可以用空格或连接符分隔</p>
+<p>​	<code>1? ?\d&#123;3&#125;( |-)?\d&#123;3&#125;( |-)?\d&#123;4&#125;</code></p>
+<p>第五步，实现第一组电话号码可以用括号包围，注意括号需要转义</p>
+<p>​	<code>1? ?(\(\d&#123;3&#125;\)|\d&#123;3&#125;)( |-)?\d&#123;3&#125;( |-)?\d&#123;4&#125;</code></p>
+<p>第六步，为了保证匹配的是一串完整的号码，而不是某段数字的中间，匹配匹配输入开始和输入结束</p>
+<p>​	<code>^1? ?(\(\d&#123;3&#125;\)|\d&#123;3&#125;)( |-)?\d&#123;3&#125;( |-)?\d&#123;4&#125;$</code></p>
+<p>正则表达式写完了，代码就很简单了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">telephoneCheck</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="regexp">/^1?\s?(\(\d&#123;3&#125;\)|\d&#123;3&#125;)(\s|-)?\d&#123;3&#125;(\s|-)?\d&#123;4&#125;$/</span>.<span class="title function_">test</span>(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">telephoneCheck</span>(<span class="string">&quot;555-555-5555&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&text=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&is_video=false&description=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）&body=Check out this article: https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&title=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&name=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）&description=&lt;p&gt;&lt;a href=&#34;https://freecodecamp.cn/challenges/validate-us-telephone-numbers&#34;&gt;题目描述&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;虽然这个题目是高级算法题，实际上是正则表达式的内容，先把正则表达式写出来。观察例子可以得出几个结论：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电话号码为十位数字（不包括国家码，连接符）&lt;/li&gt;
+&lt;li&gt;国家码可以有也可以没有，有的时候只能为1&lt;/li&gt;
+&lt;li&gt;没有国家码时，如果电话号码没有连着写，则以334的形式分隔（如果有国家码，则以1334分组）&lt;/li&gt;
+&lt;li&gt;不包括国家码的第一组数字，可以用括号包围。&lt;/li&gt;
+&lt;li&gt;分隔符为空格或连接符，两者不能接连出现&lt;/li&gt;
+&lt;/ul&gt;" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/11/30/FCC%20%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E9%A2%98%20-%20%E9%AA%8C%E8%AF%81%E7%BE%8E%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/&t=FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" hexo-seo="true" alt="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）" title="FCC 高级算法题之验证美国电话号码（Validate US Telephone Numbers）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

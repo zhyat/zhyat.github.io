@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="LeetCode 练习感谢 LeetCode CN 感谢 VsCode 中 LeetCode 插件的作者    Id Title Tags Difficulty Language    1 two-sum&#x2F;两数之和 array&#x2F;hash-table Easy js   4 find-median-sorted-arrays&#x2F;寻找两个有序数组的中位数 array&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 题解目录">
+<meta property="og:url" content="https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="LeetCode 练习感谢 LeetCode CN 感谢 VsCode 中 LeetCode 插件的作者    Id Title Tags Difficulty Language    1 two-sum&#x2F;两数之和 array&#x2F;hash-table Easy js   4 find-median-sorted-arrays&#x2F;寻找两个有序数组的中位数 array&amp;#x2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-24T06:09:47.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.513Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>LeetCode 题解目录</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/06/26/%E5%88%A9%E7%94%A8%20github%20action%20%E9%83%A8%E7%BD%B2%20hexo%20%E5%88%B0%20github%20page/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/02/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&text=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&is_video=false&description=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 题解目录&body=Check out this article: https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&name=LeetCode 题解目录&description=" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&t=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-%E7%BB%83%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">LeetCode 练习</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        LeetCode 题解目录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-02-24T06:09:47.000Z" class="dt-published" itemprop="datePublished">2020-02-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BD%9CAlgorithm/">数据结构与算法｜Algorithm</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/LeetCode/" rel="tag">LeetCode</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="LeetCode-练习"><a href="#LeetCode-练习" class="headerlink" title="LeetCode 练习"></a>LeetCode 练习</h1><p>感谢 <a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">LeetCode CN</a></p>
+<p>感谢 VsCode 中 <a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-leetcode" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">LeetCode</a> 插件的作者</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Title</th>
+<th>Tags</th>
+<th>Difficulty</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/two-sum/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">two-sum&#x2F;两数之和</a></td>
+<td>array&#x2F;hash-table</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/1.two-sum/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">find-median-sorted-arrays&#x2F;寻找两个有序数组的中位数</a></td>
+<td>array&#x2F;binary-search&#x2F;divide-and-conquer</td>
+<td>Hard</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/4.findMedianSortedArrays/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/reverse-integer/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">reverse-integer&#x2F;整数反转</a></td>
+<td>math</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/7.reverse-integer/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/palindrome-number/description//" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">palindrome-number&#x2F;回文数</a></td>
+<td>math</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/9.palindrome-number/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/roman-to-integer/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">roman-to-integer&#x2F;罗马数字转整数</a></td>
+<td>math&#x2F;string</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/13.roman-to-integer/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/longest-common-prefix/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">longest-common-prefix&#x2F;最长公共前缀</a></td>
+<td>string</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/14.longest-common-prefix/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">remove-nth-node-from-end-of-list&#x2F;删除链表的倒数第N个节点</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/linked-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">linked-list</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/two-pointers" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">two-pointers</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/19.remove-nth-node-from-end-of-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/valid-parentheses/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">valid-parentheses&#x2F;有效的括号</a></td>
+<td>string&#x2F;stack</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/20.valid-parentheses/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/20.valid-parentheses/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">merge-two-sorted-lists&#x2F;合并两个有序链表</a></td>
+<td>linked-list</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/21.merge-two-sorted-lists/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/21.merge-two-sorted-lists/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/remove-element/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">remove-element&#x2F;移除元素</a></td>
+<td>array&#x2F;two-pointers</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/27.remove-element/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/implement-strstr/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">implement-strstr&#x2F;实现strStr()</a></td>
+<td>string&#x2F;two-pointers</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/28.implement-strstr/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/search-insert-position/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">search-insert-position&#x2F;搜索插入位置</a></td>
+<td>array&#x2F;binary-search&#x2F;</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript//35.search-insert-position/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/count-and-say/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">count-and-say&#x2F;报数</a></td>
+<td>string</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/38.count-and-say/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>53</td>
+<td><a href="./53.maximum-subarray/">maximum-subarray&#x2F;最大子序和</a></td>
+<td>array&#x2F;divide-and-conquer&#x2F;dynamic-programming</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/53.maximum-subarray/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>58</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/length-of-last-word/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">length-of-last-word&#x2F;最后一个单词的长度</a></td>
+<td>string</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/58.length-of-last-word/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>66</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/plus-one/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">plus-one&#x2F;加一</a></td>
+<td>array</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/66.plus-one/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>67</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/add-binary/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">add-binary&#x2F;二进制求和</a></td>
+<td>math&#x2F;string</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/67.add-binary/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>69</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/sqrtx/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">sqrtx&#x2F;x 的平方根</a></td>
+<td>math&#x2F;binary-search</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/69.sqrtx/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>70</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/climbing-stairs/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">climbing-stairs&#x2F;爬楼梯</a></td>
+<td>dynamic-programming</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/70.climbing-stairs/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>83</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">remove-duplicates-from-sorted-list&#x2F;删除排序链表中的重复元素</a></td>
+<td>linked-list</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/83.remove-duplicates-from-sorted-list/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>88</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/merge-sorted-array/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">merge-sorted-array&#x2F;合并两个有序数组</a></td>
+<td>array&#x2F;two-pointers</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/88.merge-sorted-array" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>100</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/same-tree/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">same-tree&#x2F;相同的树</a></td>
+<td>tree&#x2F;depth-first-search</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/100.same-tree" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>101</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/symmetric-tree/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">symmetric-tree&#x2F;对称二叉树</a></td>
+<td>tree&#x2F;depth-first-search&#x2F;breadth-first-search</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/101.symmetric-tree" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>104</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">maximum-depth-of-binary-tree&#x2F;二叉树的最大深度</a></td>
+<td>tree&#x2F;depth-first-search</td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/javaScript/104.maximum-depth-of-binary-tree" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">js</a></td>
+</tr>
+<tr>
+<td>141</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/linked-list-cycle/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">inked-list-cycle&#x2F;环形链表</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/linked-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">linked-list</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/two-pointers" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">two-pointers</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/141.linked-list-cycle" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>155</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/min-stack/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">min-stack&#x2F;最小栈</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/stack" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">stack</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/design" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">design</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/155.min-stack" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>206</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/reverse-linked-list/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">reverse-linked-list&#x2F;反转链表</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/linked-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">linked-list</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/206.reverse-linked-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>232</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/implement-queue-using-stacks/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">implement-queue-using-stacks&#x2F;用栈实现队列</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/stack" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">stack</a>&#x2F;<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/design" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">design</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/232.mplement-queue-using-stacks" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>844</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/backspace-string-compare/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">backspace-string-compare&#x2F;比较含退格的字符串</a></td>
+<td></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/844.backspace-string-compare" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td>876</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode-cn.com/problems/middle-of-the-linked-list/description/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">middle-of-the-linked-list&#x2F;链表的中间结点</a></td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://leetcode.com/tag/ordered-map" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">ordered-map</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://github.com/zhyat/leetcode/tree/master/src/python/876.middle-of-the-linked-list" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录">python</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-%E7%BB%83%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">LeetCode 练习</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&text=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&is_video=false&description=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode 题解目录&body=Check out this article: https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&title=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&name=LeetCode 题解目录&description=" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2020/02/24/leetcode%E9%A2%98%E8%A7%A3%E7%9B%AE%E5%BD%95/&t=LeetCode 题解目录" hexo-seo="true" alt="LeetCode 题解目录" title="LeetCode 题解目录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

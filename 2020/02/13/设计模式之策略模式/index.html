@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="基本概念定义：定义一系列的算法, 把它们一个个封装起来, 并且使它们可以相互替换。使用场景：达到某个目的，有不同的方法。例如表单校验。关键：环境类（context)接受某一请求，随后把某一请求委托给一策略类，context需要维持对某一策略对象的引用。名词解释：环境类：接受客户请求的类；策略类：实现具体算法的类 模仿面向对象语言的代码实现jscode 12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的改善前端代码的设计模式-策略模式">
+<meta property="og:url" content="https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="基本概念定义：定义一系列的算法, 把它们一个个封装起来, 并且使它们可以相互替换。使用场景：达到某个目的，有不同的方法。例如表单校验。关键：环境类（context)接受某一请求，随后把某一请求委托给一策略类，context需要维持对某一策略对象的引用。名词解释：环境类：接受客户请求的类；策略类：实现具体算法的类 模仿面向对象语言的代码实现jscode 12345678910111213141516">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.513Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="FrontEnd">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>常见的改善前端代码的设计模式-策略模式</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&text=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&is_video=false&description=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=常见的改善前端代码的设计模式-策略模式&body=Check out this article: https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&name=常见的改善前端代码的设计模式-策略模式&description=" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&t=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E4%BB%BF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">模仿面向对象语言的代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEjs%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">根据js语言特性的代码实现</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        常见的改善前端代码的设计模式-策略模式
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-02-13T00:00:00.000Z" class="dt-published" itemprop="datePublished">2020-02-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BD%9CDesign-Pattern/">设计模式｜Design Pattern</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/FrontEnd/" rel="tag">FrontEnd</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>定义：定义一系列的算法, 把它们一个个封装起来, 并且使它们可以相互替换。<br>使用场景：达到某个目的，有不同的方法。例如表单校验。<br>关键：环境类（context)接受某一请求，随后把某一请求委托给一策略类，context需要维持对某一策略对象的引用。<br>名词解释：环境类：接受客户请求的类；策略类：实现具体算法的类</p>
+<h2 id="模仿面向对象语言的代码实现"><a href="#模仿面向对象语言的代码实现" class="headerlink" title="模仿面向对象语言的代码实现"></a>模仿面向对象语言的代码实现</h2><p><em>jscode</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 策略类</span></span><br><span class="line"><span class="keyword">var</span> muneA = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;</span><br><span class="line">muneA.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">calculate</span> = <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> count * <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> muneB = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;</span><br><span class="line">muneB.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">calculate</span> = <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> count * <span class="number">1000</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> muneC = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;</span><br><span class="line">muneC.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">calculate</span> = <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> count * <span class="number">500</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 环境类</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Checkstand</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">count</span> = <span class="literal">null</span></span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">strategy</span> = nul;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Checkstand</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">setCount</span> = <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">count</span> = count</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Checkstand</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">setStrategy</span> = <span class="keyword">function</span> (<span class="params">strategy</span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">strategy</span> = strategy</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Checkstand</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getDealMoney</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">strategy</span>.<span class="title function_">calculate</span>(<span class="variable language_">this</span>.<span class="property">strategy</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line"><span class="keyword">var</span> checkstand = <span class="keyword">new</span> <span class="title class_">Checkstand</span>()</span><br><span class="line">checkstand.<span class="title function_">setStrategy</span>(<span class="keyword">new</span> <span class="title function_">muneA</span>()) <span class="comment">// 设置策略对象</span></span><br><span class="line">checkstand.<span class="title function_">setCount</span>(<span class="number">10</span>)  <span class="comment">// 设置数量</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="根据js语言特性的代码实现"><a href="#根据js语言特性的代码实现" class="headerlink" title="根据js语言特性的代码实现"></a>根据js语言特性的代码实现</h2><p><em>jscode</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strategy = &#123;</span><br><span class="line">	<span class="string">&quot;muneA&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">100</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;muneB&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">1000</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;muneC&quot;</span>: <span class="keyword">function</span> (<span class="params">count</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count * <span class="number">500</span></span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">var</span> calculateDelaMoney = <span class="keyword">function</span> (<span class="params">menuType, count</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> strategy[menuType](count)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E4%BB%BF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">模仿面向对象语言的代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEjs%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">根据js语言特性的代码实现</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&text=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&is_video=false&description=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=常见的改善前端代码的设计模式-策略模式&body=Check out this article: https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&title=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&name=常见的改善前端代码的设计模式-策略模式&description=" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/&t=常见的改善前端代码的设计模式-策略模式" hexo-seo="true" alt="常见的改善前端代码的设计模式-策略模式" title="常见的改善前端代码的设计模式-策略模式"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

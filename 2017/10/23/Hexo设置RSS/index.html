@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="为Hexo添加RSS订阅模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo添加RSS">
+<meta property="og:url" content="https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="为Hexo添加RSS订阅模块">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-23T10:30:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.493Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>Hexo添加RSS</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/10/28/%E7%9C%8B%E6%87%82%E9%93%81%E8%B7%AF%E5%9B%BE(%E8%AF%AD%E6%B3%95%E5%9B%BE)/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/10/22/Windows%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90%E6%B8%85%E5%8D%95%E7%94%B5%E8%84%91%E8%BD%AF%E4%BB%B6%E6%B8%85%E5%8D%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&text=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&is_video=false&description=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo添加RSS&body=Check out this article: https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&name=Hexo添加RSS&description=&lt;p&gt;为Hexo添加RSS订阅模块&lt;/p&gt;" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&t=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85RSS%E6%8F%92%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">安装RSS插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Hexo%E4%B8%AD%E5%BC%80%E5%90%AFRSS%E6%94%AF%E6%8C%81"><span class="toc-number">2.</span> <span class="toc-text">在Hexo中开启RSS支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%B8%BB%E9%A2%98%E4%B8%AD%E5%BC%80%E5%90%AF"><span class="toc-number">3.</span> <span class="toc-text">在主题中开启</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Hexo添加RSS
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-23T10:30:00.000Z" class="dt-published" itemprop="datePublished">2017-10-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%8D%9A%E5%AE%A2%EF%BD%9CBlog/">博客｜Blog</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>为Hexo添加RSS订阅模块</p>
+<span id="more"></span>
+
+<h2 id="安装RSS插件"><a href="#安装RSS插件" class="headerlink" title="安装RSS插件"></a>安装RSS插件</h2><p>在根目录执行命令</p>
+<p><code>npm install hexo-generator-feed --save</code></p>
+<h2 id="在Hexo中开启RSS支持"><a href="#在Hexo中开启RSS支持" class="headerlink" title="在Hexo中开启RSS支持"></a>在Hexo中开启RSS支持</h2><p>在网站根目录下的站点配置文件<code>_config.yml</code> Extensions部分中添加</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">plugin:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo-generator-feed</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># Feed Atom</span></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">atom</span></span><br><span class="line"><span class="attr">path:</span> <span class="string">atom.xml</span></span><br><span class="line"><span class="attr">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="在主题中开启"><a href="#在主题中开启" class="headerlink" title="在主题中开启"></a>在主题中开启</h2><p>我使用的是nexT主题，默认开启，不同主题方式不一样，查阅文档即可。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85RSS%E6%8F%92%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">安装RSS插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Hexo%E4%B8%AD%E5%BC%80%E5%90%AFRSS%E6%94%AF%E6%8C%81"><span class="toc-number">2.</span> <span class="toc-text">在Hexo中开启RSS支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%B8%BB%E9%A2%98%E4%B8%AD%E5%BC%80%E5%90%AF"><span class="toc-number">3.</span> <span class="toc-text">在主题中开启</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&text=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&is_video=false&description=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo添加RSS&body=Check out this article: https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&title=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&name=Hexo添加RSS&description=&lt;p&gt;为Hexo添加RSS订阅模块&lt;/p&gt;" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/10/23/Hexo%E8%AE%BE%E7%BD%AERSS/&t=Hexo添加RSS" hexo-seo="true" alt="Hexo添加RSS" title="Hexo添加RSS"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

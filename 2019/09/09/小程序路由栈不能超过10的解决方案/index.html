@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="微信小程序路由跳转有个隐藏的坑，就是 wx.navigateTo打开新页面，最多只能打开10个，超过10个之后就没反应，控制台也不会报错。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序路由栈不能超过 10 的解决方案">
+<meta property="og:url" content="https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="微信小程序路由跳转有个隐藏的坑，就是 wx.navigateTo打开新页面，最多只能打开10个，超过10个之后就没反应，控制台也不会报错。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.513Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="领域语言">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>微信小程序路由栈不能超过 10 的解决方案</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/02/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&text=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&is_video=false&description=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信小程序路由栈不能超过 10 的解决方案&body=Check out this article: https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&name=微信小程序路由栈不能超过 10 的解决方案&description=&lt;p&gt;微信小程序路由跳转有个隐藏的坑，就是 &lt;code&gt;wx.navigateTo&lt;/code&gt;打开新页面，最多只能打开10个，超过10个之后就没反应，控制台也不会报错。 &lt;/p&gt;" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&t=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E6%9C%80%E7%B2%97%E6%9A%B4%E2%80%A6navigateTo%E4%B8%8D%E8%A1%8C%EF%BC%8C%E9%82%A3%E5%B0%B1redirectTo"><span class="toc-number">1.</span> <span class="toc-text">方案一：最粗暴…navigateTo不行，那就redirectTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%E5%8D%87%E7%BA%A7%E7%89%88%EF%BC%9A%E6%A0%B9%E6%8D%AE%E9%A1%B5%E9%9D%A2%E6%A0%88%E5%86%B3%E5%AE%9A%E5%BD%93%E5%89%8D%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">方案一升级版：根据页面栈决定当前跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%A0%88%E4%B9%8B%E5%A4%96%E7%BB%B4%E6%8A%A4%E5%A4%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%80%BB%E8%BE%91%E6%A0%88"><span class="toc-number">3.</span> <span class="toc-text">方案二：在小程序页面栈之外维护多一个自己的逻辑栈</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        微信小程序路由栈不能超过 10 的解决方案
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-09T00:00:00.000Z" class="dt-published" itemprop="datePublished">2019-09-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/JavaScript/">JavaScript</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E9%A2%86%E5%9F%9F%E8%AF%AD%E8%A8%80/" rel="tag">领域语言</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>微信小程序路由跳转有个隐藏的坑，就是 <code>wx.navigateTo</code>打开新页面，最多只能打开10个，超过10个之后就没反应，控制台也不会报错。 </p>
+<span id="more"></span>
+
+<h2 id="方案一：最粗暴…navigateTo不行，那就redirectTo"><a href="#方案一：最粗暴…navigateTo不行，那就redirectTo" class="headerlink" title="方案一：最粗暴…navigateTo不行，那就redirectTo"></a>方案一：最粗暴…<code>navigateTo</code>不行，那就<code>redirectTo</code></h2><p>小程序路由跳转的方式有五种，分别是<code>wx.navigateTo</code>（打开新页面，新页面入栈）、<code>wx.redirectTo</code>（重定向，当前页面出栈，新页面入栈）、<code>wx.navigateBack</code>（返回，页面不断出栈，直到目标返回页）、<code>wx.switchTab</code>（切换tab页面，页面全部出栈，只留下新的 Tab 页面）、<code>wx.reLaunch</code>（页面全部出栈，只留下新的页面）</p>
+<p>由此产生了第一种方式，当页面栈超过 10 时，直接用<code>redirectTo</code>。</p>
+<p>但这样太粗暴了，显然很多场景是需要保留访问过的页面的，由此有了方案一的升级版。</p>
+<h2 id="方案一升级版：根据页面栈决定当前跳转方式"><a href="#方案一升级版：根据页面栈决定当前跳转方式" class="headerlink" title="方案一升级版：根据页面栈决定当前跳转方式"></a>方案一升级版：根据页面栈决定当前跳转方式</h2><p>每次跳转先去页面栈中查找目标页面是否已经访问过，如果访问过则用<code>wx.navigateBack</code>返回，如果没有访问过则判断页面栈中是否已经有10个页面，有则用<code>wx.redirectTo</code>，没有则<code>navigateTo</code><br> <em>js code</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RouteMp</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">opt=&#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">MAX_DEEP</span> = opt.<span class="property">MAX_DEEP</span> || <span class="number">10</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">IS_AUTO_BACK</span> = opt.<span class="property">IS_AUTO_BACK</span> || <span class="literal">true</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">PAGE_STACk</span> = <span class="title function_">getCurrentPages</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">_findPageInHistory</span>(<span class="params">path</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; PAGE_STACk &#125; = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">let</span> delta = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; PAGE_STACk.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (PAGE_STACk[i].<span class="property">route</span> === path) &#123;</span><br><span class="line">        delta = i + <span class="number">1</span> <span class="comment">// 目标页在栈中的位置</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> delta</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">_dataToUrlQuery</span>(<span class="params">data=&#123;&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> query = <span class="string">&#x27;?&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> prop <span class="keyword">in</span> data) &#123;</span><br><span class="line">      <span class="keyword">if</span> (data.<span class="title function_">hasOwnProperty</span>(prop)) &#123;</span><br><span class="line">        <span class="keyword">const</span> value = data[prop];</span><br><span class="line">        query += <span class="string">`<span class="subst">$&#123;prop&#125;</span>=<span class="subst">$&#123;value&#125;</span>&amp;`</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> query.<span class="title function_">replace</span>(<span class="regexp">/&amp;$/</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">goPage</span>(<span class="params">opt</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!opt) <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;缺少参数&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (opt &amp;&amp; !opt.<span class="property">path</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;缺少跳转目标path&#x27;</span>)</span><br><span class="line">    <span class="keyword">const</span> &#123; PAGE_STACk &#125; = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">const</span> pageStackLen = PAGE_STACk.<span class="property">length</span></span><br><span class="line">    <span class="keyword">let</span> &#123; path, data &#125; = opt</span><br><span class="line">    <span class="keyword">let</span> delta = <span class="variable language_">this</span>.<span class="title function_">_findPageInHistory</span>(path)</span><br><span class="line">    path = <span class="string">&#x27;/&#x27;</span> + path.<span class="title function_">replace</span>(<span class="regexp">/^\//</span>, <span class="string">&#x27;&#x27;</span>) + <span class="variable language_">this</span>.<span class="title function_">_dataToUrlQuery</span>(data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (delta &gt; -<span class="number">1</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">IS_AUTO_BACK</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果有目标页已经是被访问过的</span></span><br><span class="line">      <span class="keyword">const</span> backPage = PAGE_STACk[pageStackLen - delta]</span><br><span class="line">      backPage.<span class="title function_">setData</span>(&#123;data&#125;);</span><br><span class="line">      wx.<span class="title function_">navigateBack</span>(&#123;</span><br><span class="line">        <span class="attr">delta</span>: pageStackLen - delta</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (pageStackLen &lt; <span class="variable language_">this</span>.<span class="property">MAX_DEEP</span>) &#123;</span><br><span class="line">        wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">          <span class="attr">url</span>: path</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        wx.<span class="title function_">redirectTo</span>(&#123;</span><br><span class="line">          <span class="attr">url</span>: path</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">RouteMp</span></span><br></pre></td></tr></table></figure>
+
+<p>但是这样依然有问题，页面传参数变得无法统一，而且明明是前进页面，用户使用的时候很可能看着就是返回了几个页面。</p>
+<h2 id="方案二：在小程序页面栈之外维护多一个自己的逻辑栈"><a href="#方案二：在小程序页面栈之外维护多一个自己的逻辑栈" class="headerlink" title="方案二：在小程序页面栈之外维护多一个自己的逻辑栈"></a>方案二：在小程序页面栈之外维护多一个自己的逻辑栈</h2><p>这个方案并非我们自己想到的，出处是某位清华学霸，我是在<a target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://juejin.im/post/5c09d82e51882517165dd485" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案">掘金-小程序无限层级路由方案</a>看到的。</p>
+<p>总的来说就是：</p>
+<ol>
+<li>9层（含9层）以内时：走小程序自己的历史栈就ok了，跳转时候更新一下逻辑栈，这没啥可说的</li>
+<li>从9层跳转10层：需要把第9层重定向到中转页，再由中转页跳转到10层</li>
+<li>10层以后跳转：在navigateTo方法中处理，到10层之后，再跳转就第10层页面一直做redirectTo（重定向）操作了</li>
+<li>10层以上返回：会返回到中转页，由中转页判断，具体返回到哪个页面，然后navigateTo（跳转）过去</li>
+<li>从10层返回到9层：返回到中转页，将中转页redirectTo（重定向）到第9层页面</li>
+<li>9层内的返回：直接返回就好了，返回时候不会更新逻辑栈，但没有关系，因为只有中转页才会用到逻辑栈</li>
+<li>逻辑栈更新机制：<ul>
+<li>跳转、返回中转页时更新<ul>
+<li>navigateTo时更新</li>
+<li>redirectTo时更新</li>
+<li>reLaunch时更新</li>
+<li>navigateBack时更新</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E6%9C%80%E7%B2%97%E6%9A%B4%E2%80%A6navigateTo%E4%B8%8D%E8%A1%8C%EF%BC%8C%E9%82%A3%E5%B0%B1redirectTo"><span class="toc-number">1.</span> <span class="toc-text">方案一：最粗暴…navigateTo不行，那就redirectTo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%E5%8D%87%E7%BA%A7%E7%89%88%EF%BC%9A%E6%A0%B9%E6%8D%AE%E9%A1%B5%E9%9D%A2%E6%A0%88%E5%86%B3%E5%AE%9A%E5%BD%93%E5%89%8D%E8%B7%B3%E8%BD%AC%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">方案一升级版：根据页面栈决定当前跳转方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E6%A0%88%E4%B9%8B%E5%A4%96%E7%BB%B4%E6%8A%A4%E5%A4%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%80%BB%E8%BE%91%E6%A0%88"><span class="toc-number">3.</span> <span class="toc-text">方案二：在小程序页面栈之外维护多一个自己的逻辑栈</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&text=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&is_video=false&description=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信小程序路由栈不能超过 10 的解决方案&body=Check out this article: https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&title=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&name=微信小程序路由栈不能超过 10 的解决方案&description=&lt;p&gt;微信小程序路由跳转有个隐藏的坑，就是 &lt;code&gt;wx.navigateTo&lt;/code&gt;打开新页面，最多只能打开10个，超过10个之后就没反应，控制台也不会报错。 &lt;/p&gt;" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2019/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B7%AF%E7%94%B1%E6%A0%88%E4%B8%8D%E8%83%BD%E8%B6%85%E8%BF%8710%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/&t=微信小程序路由栈不能超过 10 的解决方案" hexo-seo="true" alt="微信小程序路由栈不能超过 10 的解决方案" title="微信小程序路由栈不能超过 10 的解决方案"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

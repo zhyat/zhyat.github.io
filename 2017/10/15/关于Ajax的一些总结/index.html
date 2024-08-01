@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" >
+    <meta name="description" content="AJAX全称是”Asynchronous Javascript And XML”，即“异步JavaScript和XML”。 AJAX不是一种新的编程语言，而是一种使用现有标准的新方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX简述">
+<meta property="og:url" content="https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="zhyat blog">
+<meta property="og:description" content="AJAX全称是”Asynchronous Javascript And XML”，即“异步JavaScript和XML”。 AJAX不是一种新的编程语言，而是一种使用现有标准的新方法。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-15T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-01T11:08:34.493Z">
+<meta property="article:author" content="zhyat">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    
+    <title>AJAX简述</title>
+    
+    
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBPEQHTVB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7YBPEQHTVB');
+  </script>
+
+
+    
+
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    
+    
+    
+	
+	
+<meta name="generator" content="Hexo 7.2.0"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" ></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2017/10/22/Windows%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90%E6%B8%85%E5%8D%95%E7%94%B5%E8%84%91%E8%BD%AF%E4%BB%B6%E6%B8%85%E5%8D%95/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2017/09/25/jQuery%E7%B3%BB%E5%88%97DOM%E7%AF%87/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&text=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&is_video=false&description=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AJAX简述&body=Check out this article: https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&name=AJAX简述&description=&lt;p&gt;AJAX全称是”Asynchronous Javascript And XML”，即“异步JavaScript和XML”。&lt;/p&gt;
+&lt;p&gt;AJAX不是一种新的编程语言，而是一种使用现有标准的新方法。&lt;/p&gt;" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&t=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.2.</span> <span class="toc-text">异步</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AJAX%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">AJAX应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAXMLHttpRequest%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">创建XMLHttpRequest对象</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-number">3.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">3.1.1.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#GET%E5%92%8CPOST"><span class="toc-number">3.1.2.</span> <span class="toc-text">GET和POST</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-number">3.2.</span> <span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%84%E6%88%90-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">3.2.2.</span> <span class="toc-text">状态码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XMLHttpRequest%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">XMLHttpRequest发送请求</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">方法和属性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-XMLHttpRequest%E5%8F%96%E5%BE%97%E5%93%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">5.XMLHttpRequest取得响应</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 方法和属性</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        AJAX简述
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">zhyat</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-10-15T00:00:00.000Z" class="dt-published" itemprop="datePublished">2017-10-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%EF%BD%9CNetwork/">网络｜Network</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>AJAX全称是”Asynchronous Javascript And XML”，即“异步JavaScript和XML”。</p>
+<p>AJAX不是一种新的编程语言，而是一种使用现有标准的新方法。</p>
+<span id="more"></span>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>通过XMLHttpRequest，与后台交互数据，实现局部刷新。</p>
+<h5 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h5><p>提交请求-&gt;等待服务器处理-&gt;处理完毕返回 这个期间客户端浏览器不能干任何事</p>
+<h5 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h5><p>请求通过事件触发-&gt;服务器处理（这是浏览器仍然可以作其他事情）-&gt;处理完毕</p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><h5 id="AJAX应用"><a href="#AJAX应用" class="headerlink" title="AJAX应用"></a>AJAX应用</h5><ol>
+<li>使用HTML和CSS完成页面</li>
+<li>通过XMLHttpRequest和web服务器进行数据交换</li>
+<li>JavaScript DOM操作，完成动态局部刷新</li>
+</ol>
+<h5 id="创建XMLHttpRequest对象"><a href="#创建XMLHttpRequest对象" class="headerlink" title="创建XMLHttpRequest对象"></a>创建XMLHttpRequest对象</h5><p>要使用Ajax，第一步就是实例化XMLHttpRequest对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> <span class="title class_">XMLHttpReques</span>();</span><br></pre></td></tr></table></figure>
+
+<p>现代浏览器基本上都支持XMLHttpReques对象，但如果要兼容IE6、IE5的上古浏览器可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(windows.<span class="property">XMLHttpReques</span>)&#123;</span><br><span class="line">    request = <span class="keyword">new</span> <span class="title class_">XMLHttpReques</span>();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    request = <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP是一种计算机与计算机网络通信的规则，是无状态的协议，它既不建立持续的连接，也不保留“记忆”。</p>
+<p>HTTP请求的过程：</p>
+<ol>
+<li>建立TCP连接</li>
+<li>浏览器发送请求命令</li>
+<li>浏览器发送请求头信息</li>
+<li>web服务器应答</li>
+<li>web服务器发送应答头信息</li>
+<li>web服务器发送应答数据主体</li>
+<li>关闭TCP连接</li>
+</ol>
+<h5 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h5><h6 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h6><p>请求由方法（动作）、URL、请求头、请求体组成。请求头和请求体以空行分隔。</p>
+<h6 id="GET和POST"><a href="#GET和POST" class="headerlink" title="GET和POST"></a>GET和POST</h6><p>GET：多用于信息获取，用URL传递参数，在发送信息的时候字符有限制，一般在2000个字符左右。<br><em>也很很多人说GET是幂等的，幂等其实就是执行多次与执行一次并无差别</em></p>
+<p>POST：一般用于修改服务器上的资源。对信息的数量无限制，较之GET更安全。</p>
+<blockquote>
+<p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。<br>然而，在以下情况中，请使用 POST 请求：<br>无法使用缓存文件（更新服务器上的文件或数据库）<br>向服务器发送大量数据（POST 没有数据量限制）<br>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
+</blockquote>
+<h5 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h5><h6 id="组成-1"><a href="#组成-1" class="headerlink" title="组成"></a>组成</h6><ol>
+<li>数字和文字组成的状态码</li>
+<li>响应头</li>
+<li>响应体</li>
+</ol>
+<h6 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h6><p>通常状态码的首位数字，表示状态码的类型。<br>1** 信息，服务器收到请求，需要请求者继续执行操作<br>2** 成功，操作被成功接收并处理<br>3** 重定向，需要进一步的操作以完成请求<br>4** 客户端错误，请求包含语法错误或无法完成请求<br>5** 服务器错误，服务器在处理请求的过程中发生了错误</p>
+<h4 id="XMLHttpRequest发送请求"><a href="#XMLHttpRequest发送请求" class="headerlink" title="XMLHttpRequest发送请求"></a>XMLHttpRequest发送请求</h4><h5 id="方法和属性"><a href="#方法和属性" class="headerlink" title="方法和属性"></a>方法和属性</h5><ol>
+<li>规定请求的类型、URL 以及是否异步处理请求。</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">open</span>(method,url,<span class="keyword">async</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>method: 请求的类型，GET或POST</li>
+<li>URL：请求的地址</li>
+<li>async: true为异步，false为同步，默认为true，可省略</li>
+</ul>
+<ol start="2">
+<li><p>将请求发送到服务器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">send</span>(string)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>仅用于POST</li>
+</ul>
+</li>
+<li><p>向请求添加HTTP头。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">setRequestHeader</span>(header,value)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>header: 规定头的名称</li>
+<li>value: 规定头的值</li>
+</ul>
+</li>
+</ol>
+<h4 id="5-XMLHttpRequest取得响应"><a href="#5-XMLHttpRequest取得响应" class="headerlink" title="5.XMLHttpRequest取得响应"></a>5.XMLHttpRequest取得响应</h4><h5 id="5-1-方法和属性"><a href="#5-1-方法和属性" class="headerlink" title="5.1 方法和属性"></a>5.1 方法和属性</h5><ol>
+<li><p>XMLRequest对象的两个属性<br> 获得字符串形式的响应数据</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">responseText</span><br></pre></td></tr></table></figure>
+<p> 获得XML形式的响应数据 </p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">responseXML</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以数字或文本返回HTTP状态码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">status,statusText</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取所有响应报头</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getAllResponseHeader</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询响应中的某个字段的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getResponseHeader</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onreadystatechange</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>readyState属性</p>
+<p>readyState属性代表了服务器的变化。</p>
+<p>0：请求未初始化，open未调用</p>
+<p>1：服务器连接已建立，open已经调用</p>
+<p>2：请求已接受，即已接收头信息</p>
+<p>3：请求处理中，即已收到响应主体</p>
+<p>4：请求已完成，且响应就绪，即响应完成</p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tag</a></li>
+        
+          <li><a href="/categories/">Category</a></li>
+        
+          <li><a href="/URL">LINK_NAME</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.2.</span> <span class="toc-text">异步</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AJAX%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">AJAX应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAXMLHttpRequest%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.2.</span> <span class="toc-text">创建XMLHttpRequest对象</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-number">3.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-number">3.1.1.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#GET%E5%92%8CPOST"><span class="toc-number">3.1.2.</span> <span class="toc-text">GET和POST</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-number">3.2.</span> <span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%BB%84%E6%88%90-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">组成</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">3.2.2.</span> <span class="toc-text">状态码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XMLHttpRequest%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">XMLHttpRequest发送请求</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.</span> <span class="toc-text">方法和属性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-XMLHttpRequest%E5%8F%96%E5%BE%97%E5%93%8D%E5%BA%94"><span class="toc-number">5.</span> <span class="toc-text">5.XMLHttpRequest取得响应</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 方法和属性</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.facebook.com/sharer.php?u=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://twitter.com/share?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&text=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.linkedin.com/shareArticle?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&is_video=false&description=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AJAX简述&body=Check out this article: https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://getpocket.com/save?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://reddit.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.stumbleupon.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://digg.com/submit?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&title=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="http://www.tumblr.com/share/link?url=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&name=AJAX简述&description=&lt;p&gt;AJAX全称是”Asynchronous Javascript And XML”，即“异步JavaScript和XML”。&lt;/p&gt;
+&lt;p&gt;AJAX不是一种新的编程语言，而是一种使用现有标准的新方法。&lt;/p&gt;" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="nofollow noopener noreferer noreferrer external" href="https://news.ycombinator.com/submitlink?u=https://blog.otherpath.xyz/2017/10/15/%E5%85%B3%E4%BA%8EAjax%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/&t=AJAX简述" hexo-seo="true" alt="AJAX简述" title="AJAX简述"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    zhyat
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li><li><a href="/archives/">Writing</a></li><li><a href="/tags/">Tag</a></li><li><a href="/categories/">Category</a></li><li><a href="/URL">LINK_NAME</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'">
+
+
+    
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
